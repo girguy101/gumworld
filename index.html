@@ -1,13 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://unpkg.com/webamp@1.4.0/built/webamp.bundle.min.js"></script> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>xgum central, USA</title>
     <link href="dist/style.css" rel="stylesheet">
 </head>
 <body>
-
+  <div style="width:40px; height:40px; position:absolute; bottom:80%; left:10%;">
+    <div id="winamp-container"></div>
+      <script>
+  const Winamp = window.Webamp;
+  // All configuration options are optional.
+  const webamp = new Webamp({
+      // Optional.
+      initialTracks: [
+          {
+              metaData: {
+                  artist: "xgum",
+                  title: "Jainism Stance (Instrumental)",
+              },
+              url: "https://files.catbox.moe/y14qzr.wav",
+          }, {
+              metaData: {
+                  artist: "xgum",
+                  title: "RAF",
+              },
+              url: "https://files.catbox.moe/f9umxq.wav",
+          },
+          {
+              metaData: {
+                  artist: "xgum",
+                  title: "Beware (Instrumental)",
+              },
+              url: "https://files.catbox.moe/8lyi7r.wav",
+          },
+          {
+              metaData: {
+                  artist: "xgum",
+                  title: "Bottle Song (Instrumental)",
+              },
+              url: "https://files.catbox.moe/dh5kfc.wav",
+          },
+          {
+              metaData: {
+                  artist: "xgum",
+                  title: "It's Not Worth It - That's Not How It Goes",
+              },
+              url: "https://files.catbox.moe/7xt956.wav",
+          },
+        ],
+      initialSkin: {
+          url: "webamp/Pinkstar.wsz"
+      },
+  });
+  webamp.renderWhenReady(document.getElementById('winamp-container'));
+  </script>
     <header class="site-header">
         <h1>AT LONG LAST, YOU'VE FOUND GUMWORLD</h1>
     </header>
