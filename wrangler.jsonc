@@ -1,6 +1,6 @@
 {
     "name": "gumworldweb",
-    "compatability date": "2025-10-01",
+    "compatability_date": "2025-10-01",
     "assets": {
         "directory": "./dist"
     }
