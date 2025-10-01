@@ -117,10 +117,12 @@ a:hover {
 }
 
 .profile-img {
-    max-width: 45%; /* Keeps images from stretching too wide */
+    /* 💥 ENSURE THIS IS 100% 💥 */
+    max-width: 100%; 
     height: auto;
-    border: 3px solid magenta;
+    border: 3px solid chartreuse; 
     transition: transform 0.3s ease;
+    /* ... other styles ... */
 }
 
 .profile-img:hover {
