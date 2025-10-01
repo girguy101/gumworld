@@ -1,0 +1,238 @@
+:root {
+    /* CSS Variables for easy color changes */
+    --color-primary: black;
+    --color-secondary: magenta;
+    --color-highlight: chartreuse;
+    --color-text: magenta;
+    --font-stack: 'Arial', sans-serif;
+    --max-width: 1200px;
+}
+
+/* Basic Reset & Body Styling */
+body {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/* Reset margins and paddings for all common block elements */
+body, h1, h2, h3, p, ul, ol, li, section, header, main, footer, div, a, img {
+    margin: 0;
+    padding: 0;
+    /* This ensures images and other elements don't get unwanted block spacing */
+}
+
+body {
+    background-color: black;
+    color: magenta;
+    font-family: 'Arial', sans-serif;
+    /* Retaining the background image and making it cover the screen */
+    background-image: url('ax.jpg');
+    background-size: cover; 
+    background-attachment: fixed; 
+    line-height: 1.6;
+    padding: 20px;
+}
+
+/* Header Styling - Centered Title with a dark background for readability */
+.site-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.site-header h1 {
+    color: magenta;
+    background-color: rgba(0, 0, 0, 0.7); 
+    padding: 10px 20px;
+    display: inline-block;
+}
+
+/* Main Layout using CSS Grid for responsiveness */
+.content-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    /* Two columns: 2/3 width for Welcome, 1/3 width for Releases */
+    grid-template-columns: 2fr 1fr; 
+    gap: 40px;
+}
+
+/* Design Element: Content blocks with border and semi-transparent background */
+.welcome-section, .releases-section, .release-category {
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.85); 
+    border: 2px solid black; 
+    border-radius: 8px;
+    margin-bottom: 20px; /* Space between content blocks on mobile */
+}
+
+/* Typography and Color */
+.section-title {
+    color: magenta;
+    border-bottom: 2px solid chartreuse;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.category-title {
+    color: magenta;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+/* Link Styling with Hover Effect */
+a {
+    color: chartreuse;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: magenta; 
+    text-decoration: underline;
+}
+
+.link-highlight {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* List Styling */
+.release-list {
+    list-style-type: circle; /* Interesting list marker */
+    padding-left: 20px;
+}
+
+.release-list li {
+    margin-bottom: 5px;
+}
+
+/* Image/Link Styling using Flexbox to align them */
+.image-links {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin: 30px 0;
+}
+
+.profile-img {
+    /* 💥 ENSURE THIS IS 100% 💥 */
+    max-width: 100%; 
+    height: auto;
+    border: 3px solid chartreuse; 
+    transition: transform 0.3s ease;
+    /* ... other styles ... */
+}
+
+.profile-img:hover {
+    transform: scale(1.05); /* Modern visual cue on hover */
+    box-shadow: 0 0 15px chartreuse; /* Adding a glow effect */
+}
+
+/* Retro/Vaporwave Glow Effect */
+h1, h2, h3 {
+    text-shadow: 0 0 5px var(--color-secondary), 0 0 10px var(--color-secondary);
+}
+
+
+/* --- YOUTUBE SECTION STYLES --- */
+
+.youtube-section {
+    /* Make this section span across both columns in the grid layout */
+    grid-column: 1 / -1; 
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.85); 
+    border: 2px solid magenta;
+    border-radius: 8px;
+    margin-top: 20px; 
+}
+
+/* Flexbox for the video layout */
+
+.video-grid {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px;
+    justify-content: center; 
+    padding-top: 10px;
+}
+
+.video-item {
+    display: block;
+    overflow: hidden; 
+    border: 2px solid chartreuse;
+    line-height: 0; 
+    
+    /* 💥 THIS ENSURES 4 VIDEOS PER LINE ON DESKTOP 💥 */
+    width: 23%; 
+    min-width: 150px; 
+
+    /* Smooth transition for the hover effect */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* SCALE-ON-HOVER EFFECT */
+.video-item {
+    display: block;
+    overflow: hidden; 
+    border: 2px solid chartreuse;
+    
+    /* 💥 ADD THIS LINE TO CENTER THE TITLE TEXT 💥 */
+    text-align: center; 
+    
+    line-height: 0; 
+    width: 23%; 
+    min-width: 150px; 
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+
+/* --- NEW RULE FOR THE VIDEO TITLE --- */
+.video-title {
+    display: block;
+    color: magenta;
+    padding: 5px 5px 10px 5px; /* Adds space around the text */
+    line-height: 1.2; 
+    font-size: 0.9em;
+    font-weight: bold;
+    /* This makes the text readable over dark backgrounds */
+    background-color: rgba(0, 0, 0, 0.5); 
+}
+
+
+
+/* Responsive Design: Stacking on smaller screens */
+@media (max-width: 768px) {
+    .content-wrapper {
+        /* On small screens, switch to a single column layout */
+        grid-template-columns: 1fr;
+    }
+    /* Optional: Reverse the order on mobile to show Releases first, then Welcome */
+    .welcome-section {
+        order: 2;
+    }
+    .releases-section {
+        order: 1;
+    }
+
+    .image-links {
+        flex-direction: column; /* Stack images vertically */
+    }
+    .image-links a {
+        margin-bottom: 15px;
+    }
+    .profile-img {
+        max-width: 80%; /* Images take up more space on mobile */
+    }
+    .video-item {
+        width: 100%; /* Stacks videos vertically on mobile */
+        min-width: unset;
+    }
+}
