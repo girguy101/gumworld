@@ -114,16 +114,27 @@ a:hover {
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
-    margin: 30px 0;
+    margin: 10px 0;
+    /* ESSENTIAL: Allows two items to wrap to the next line */
+    flex-wrap: wrap; 
 }
-
-.profile-img {
-    /* 💥 ENSURE THIS IS 100% 💥 */
-    max-width: 100%; 
-    height: auto;
+.image-links a {
+    width: 48%; 
+    
+    /* Uniform Height Settings */
+    display: block; 
+    height: 400px; /* SETS THE FIXED UNIFORM HEIGHT */
+    overflow: hidden; 
+    margin-bottom: 5px; 
     border: 3px solid chartreuse; 
+    box-sizing: border-box;
+}
+.profile-img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain; 
+    box-sizing: border-box;
     transition: transform 0.3s ease;
-    /* ... other styles ... */
 }
 
 .profile-img:hover {
@@ -215,19 +226,13 @@ h1, h2, h3 {
         /* On small screens, switch to a single column layout */
         grid-template-columns: 1fr;
     }
-    /* Optional: Reverse the order on mobile to show Releases first, then Welcome */
-    .welcome-section {
-        order: 2;
-    }
-    .releases-section {
-        order: 1;
-    }
 
     .image-links {
         display: flex;
         justify-content: space-around;
         align-items: flex-start;
-        margin: 30px 0;
+        height: 200px;
+        margin: 48%;
         flex-wrap: wrap; 
     }
     .image-links a {
