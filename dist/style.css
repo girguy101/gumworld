@@ -239,17 +239,7 @@ h1, h2, h3 {
         overflow: hidden; 
         margin-bottom: 20px; 
     }
-    
-    /* The image itself */
-    .image-links a {
-        width: 48%; 
-        
-        /* Uniform Height Settings */
-        display: block; 
-        height: 250px; /* Sets the fixed height (adjust as needed) */
-        overflow: hidden; 
-        margin-bottom: 20px; 
-    }
+
     .video-item {
         width: 100%; /* Stacks videos vertically on mobile */
         min-width: unset;
