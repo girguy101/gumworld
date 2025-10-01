@@ -226,10 +226,21 @@ h1, h2, h3 {
         flex-direction: column; /* Stack images vertically */
     }
     .image-links a {
-        margin-bottom: 15px;
+        /* Sets the width for two items */
+        width: 48%; 
+        margin-bottom: 20px; 
+        display: block; /* Essential for applying width/height */
+        height: 250px; /* SETS THE UNIFORM HEIGHT */
+        overflow: hidden; /* Hides any part of the image that spills over */
     }
     .profile-img {
-        max-width: 80%; /* Images take up more space on mobile */
+        max-width: 100%;
+        width: 100%; 
+        height: 100%; /* Forces the image to fill the 250px height */
+        object-fit: cover; /* Ensures the image fills the space without stretching (crops the edges if needed) */
+        
+        border: 3px solid chartreuse; 
+        transition: transform 0.3s ease;
     }
     .video-item {
         width: 100%; /* Stacks videos vertically on mobile */
