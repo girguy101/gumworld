@@ -34,6 +34,17 @@ body {
     padding: 20px;
 }
 
+#winamp-container {
+    /* 1. Remove it from the normal document flow */
+    position: fixed; 
+    
+    /* 2. Pin it to the top-left corner of the viewport (browser window) */
+    top: 0;
+    left: 0;
+    
+    /* Optional: Ensure it sits above other content */
+    z-index: 1000; 
+}
 /* Header Styling - Centered Title with a dark background for readability */
 .site-header {
     text-align: center;
