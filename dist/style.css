@@ -36,8 +36,8 @@ body {
 #winamp-container {
     /* 1. Remove it from the normal document flow */
     position: fixed; 
-    top: 0;
-    left: 0;
+    right: 20;
+    bottom: 50;
     z-index: 1000; 
 }
 /* Header Styling - Centered Title with a dark background for readability */
@@ -228,7 +228,7 @@ h1, h2, h3 {
 
 /* **FIX 2: LYRICS TAB PANEL (The outer container) - REMOVE SCROLL/HEIGHT** */
 #lyrics.content-panel {
-    max-height: 1226px; 
+    max-height: 1950px; 
     overflow-y: auto; 
     padding-right: 20px; 
 }
