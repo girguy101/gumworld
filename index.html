@@ -75,21 +75,49 @@
         <section class="welcome-section">
             <h2 class="section-title">Welcome to the music of xgum</h2>
             
-            <div class="image-links">
-                <a href="https://linktr.ee/xgum" target="_blank"><img src="dist/linktree.png" alt="Linktree" class="profile-img"></a>
-                <a href="https://www.youtube.com/@xgum" target="_blank"><img src="dist/bppng2.png" alt="YouTube" class="profile-img"></a>
-                <a href="https://open.spotify.com/artist/4CimxjYz8VEqA3WwUzH198" target="_blank"><img src="dist/spotify.png" alt="Spotify" class="profile-img"></a>
-                <a href="https://soundcloud.com/xxxgum" target="_blank"><img src="dist/soundcloud.png" alt="SoundCloud" class="profile-img"></a>
-                <a href="https://genius.com/artists/Xgum" target="_blank"><img src="dist/genius.png" alt="Genius" class="profile-img"></a>
-                <a href="https://www.discogs.com/user/xgummi" target="_blank"><img src="dist/discogs.png" alt="Discogs" class="profile-img"></a>
+            <div class="button-container">
+                <button class="tab-button active" data-tab="links">Links 🔗</button>
+                <button class="tab-button" data-tab="lyrics">Lyrics 📝</button>
+                <a href="https://gumworld.org" class="tab-button coming-soon-link">Coming Soon 🚧</a>
             </div>
 
-            <p>To learn more about xgum's lyrics, check out <a href="https://genius.com/artists/Xgum" class="link-highlight" target="_blank">my genius page!!</a>.</p>
+            <div id="links" class="content-panel active">
+                <div class="image-links">
+                    <a href="https://linktr.ee/xgum" target="_blank"><img src="dist/linktree.png" alt="Linktree" class="profile-img"></a>
+                    <a href="https://www.youtube.com/@xgum" target="_blank"><img src="dist/bppng2.png" alt="YouTube" class="profile-img"></a>
+                    <a href="https://open.spotify.com/artist/4CimxjYz8VEqA3WwUzH198" target="_blank"><img src="dist/spotify.png" alt="Spotify" class="profile-img"></a>
+                    <a href="https://soundcloud.com/xxxgum" target="_blank"><img src="dist/soundcloud.png" alt="SoundCloud" class="profile-img"></a>
+                    <a href="https://genius.com/artists/Xgum" target="_blank"><img src="dist/genius.png" alt="Genius" class="profile-img"></a>
+                    <a href="https://www.discogs.com/user/xgummi" target="_blank"><img src="dist/discogs.png" alt="Discogs" class="profile-img"></a>
+                </div>
+                <p>To learn more about xgum's lyrics, check out <a href="https://genius.com/artists/Xgum" class="link-highlight" target="_blank">my genius page!!</a>.</p>
+            </div>
+
+            <div id="lyrics" class="content-panel">
+                <div class="song-list-container">
+                    <h3 class="category-title">Select a Song for Lyrics:</h3>
+                    <ul class="release-list song-list">
+                        <li><a href="#" data-song="Jainism Stance">Jainism Stance</a></li>
+                        <li><a href="#" data-song="RAF">RAF</a></li>
+                        <li><a href="#" data-song="Beware">Beware</a></li>
+                        <li><a href="#" data-song="Bottle Song">Bottle Song</a></li>
+                        <li><a href="#" data-song="Ruth">Ruth</a></li>
+                        <li><a href="#" data-song="pink gum">pink gum</a></li>
+                        </ul>
+                </div>
+                <div id="lyric-display" class="lyric-display-container">
+                    <p>Click a song title to see the lyrics (requires a backend service for secure API calls).</p>
+                </div>
+            </div>
+
+            <div id="coming-soon" class="content-panel">
+                <p>This feature is **COMING SOON!** Check back later for updates, or <a href="https://gumworld.org" class="link-highlight" target="_blank">visit gumworld.org</a>.</p>
+            </div>
+
         </section>
 
         <section class="releases-section">
             <h2 class="section-title">Releases:</h2>
-
             <div class="release-category">
                 <h3 class="category-title">Albums</h3>
                 <ul class="release-list">
@@ -99,7 +127,6 @@
                     <li><a href="https://xgum.bandcamp.com/album/GROUND-INSTRUCTION-TRAINING" target="_blank">GROUND INSTRUCTION TRAINING (2025)</a></li>
                 </ul>
             </div>
-
             <div class="release-category">
                 <h3 class="category-title">EPs</h3>
                 <ul class="release-list">
@@ -113,7 +140,6 @@
                     <li><a href="https://xgum.bandcamp.com/album/x" target="_blank">X (2025)</a></li>
                 </ul>
             </div>
-
             <div class="release-category">
                 <h3 class="category-title">Singles</h3>
                 <ul class="release-list">
@@ -136,8 +162,6 @@
                     <li><a href="https://xgum.bandcamp.com/track/episodes-of-mood" target="_blank">Episodes Of mood (2023)</a></li>
                     <li><a href="https://xgum.bandcamp.com/album/not-right" target="_blank">NOT RIGHT (2023)</a></li>
                     <li><a href="https://xgum.bandcamp.com/album/dnr" target="_blank">DNR (2025)</a></li>
-
-                    
                 </ul>
             </div>
         </section>
@@ -250,93 +274,92 @@
         </section>
     </main>
     <script>
-      document.addEventListener('DOMContentLoaded', () => {
-          const tabButtons = document.querySelectorAll('.tab-button');
-          const contentPanels = document.querySelectorAll('.content-panel');
-          const lyricDisplay = document.getElementById('lyric-display');
-          const songLinks = document.querySelectorAll('.song-list a');
-          
-          // --- PROXY URL ---
-          // 🛑 REPLACE THIS WITH YOUR DEPLOYED CLOUDFLARE WORKER URL! 🛑
-          const LYRICS_PROXY_URL = 'genius-proxy-xgum.6w2hbj9tdm.workers.dev'; 
-          // -----------------
-  
-          // --- Tab Switching Logic (Unchanged) ---
-          tabButtons.forEach(button => {
-              if (button.tagName === 'BUTTON') {
-                  button.addEventListener('click', () => {
-                      const tabId = button.getAttribute('data-tab');
-  
-                      tabButtons.forEach(btn => btn.classList.remove('active'));
-                      contentPanels.forEach(panel => panel.classList.remove('active'));
-  
-                      button.classList.add('active');
-                      document.getElementById(tabId).classList.add('active');
-                      
-                      if (tabId !== 'lyrics') {
-                           lyricDisplay.innerHTML = '<p>Click a song title to begin the Genius API lookup.</p>';
-                      }
-                  });
-              }
-          });
-          
-          // --- Secure Proxy API Implementation ---
-          async function fetchLyrics(songTitle) {
-              
-              lyricDisplay.innerHTML = `
-                  <h3 class="category-title">Searching Genius for: ${songTitle}</h3>
-                  <p>Loading lyrics from Cloudflare Worker...</p>
-              `;
-              
-              // Construct the query string to send to your secure server proxy
-              const url = `${LYRICS_PROXY_URL}?q=xgum ${encodeURIComponent(songTitle)}`;
-  
-              try {
-                  const response = await fetch(url);
-  
-                  if (!response.ok) {
-                      throw new Error(`Server responded with status: ${response.status} (${response.statusText})`);
-                  }
-  
-                  const data = await response.json(); 
-                  const fetchedLyrics = data.lyrics;
-                  const geniusUrl = data.url;
-  
-                  if (fetchedLyrics) {
-                      // Display the successfully fetched lyrics
-                      lyricDisplay.innerHTML = `
-                          <h3 class="category-title">${songTitle} - Lyrics</h3>
-                          <pre>${fetchedLyrics}</pre>
-                          <p class="link-highlight" style="margin-top: 20px;"><a href="${geniusUrl || '#'}" target="_blank">View Full Page on Genius</a></p>
-                      `;
-                  } else {
-                      // Handle server's response if lyrics scraping failed
-                      lyricDisplay.innerHTML = `
-                          <h3 class="category-title">Lookup Failed</h3>
-                          <p>Lyrics could not be fully retrieved for **${songTitle}**.</p>
-                          <p>Genius URL Found: <a href="${geniusUrl}" target="_blank" class="link-highlight">Click to view</a></p>
-                          <pre style="margin-top: 15px;">${data.lyrics}</pre>
-                      `;
-                  }
-  
-              } catch (error) {
-                  console.error('Proxy Error:', error);
-                  lyricDisplay.innerHTML = `
-                      <h3 class="category-title">Connection Error 🛑</h3>
-                      <p>Could not connect to the lyrics proxy.</p>
-                      <p>Details: <code>${error.message || 'Unknown Error'}</code></p>
-                  `;
-              }
-          }
-  
-          songLinks.forEach(link => {
-              link.addEventListener('click', (e) => {
-                  e.preventDefault();
-                  const songTitle = link.getAttribute('data-song');
-                  fetchLyrics(songTitle);
-            ;
-      });  });
-          })
-  </script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const contentPanels = document.querySelectorAll('.content-panel');
+        const lyricDisplay = document.getElementById('lyric-display');
+        const songLinks = document.querySelectorAll('.song-list a');
+        
+        // --- PROXY URL --- fuck u dazx
+        const LYRICS_PROXY_URL = ' genius-proxy-xgum.6w2hbj9tdm.workers.dev'; 
+        // -----------------
+
+        // --- Tab Switching Logic (Unchanged) ---
+        tabButtons.forEach(button => {
+            if (button.tagName === 'BUTTON') {
+                button.addEventListener('click', () => {
+                    const tabId = button.getAttribute('data-tab');
+
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    contentPanels.forEach(panel => panel.classList.remove('active'));
+
+                    button.classList.add('active');
+                    document.getElementById(tabId).classList.add('active');
+                    
+                    if (tabId !== 'lyrics') {
+                         lyricDisplay.innerHTML = '<p>Click a song title to begin the Genius API lookup.</p>';
+                    }
+                });
+            }
+        });
+        
+        // --- Secure Proxy API Implementation ---
+        async function fetchLyrics(songTitle) {
+            
+            lyricDisplay.innerHTML = `
+                <h3 class="category-title">Searching Genius for: ${songTitle}</h3>
+                <p>Loading lyrics from Cloudflare Worker...</p>
+            `;
+            
+            // Construct the query string to send to your secure server proxy
+            const url = `${LYRICS_PROXY_URL}?q=xgum ${encodeURIComponent(songTitle)}`;
+
+            try {
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    throw new Error(`Server responded with status: ${response.status} (${response.statusText})`);
+                }
+
+                const data = await response.json(); 
+                const fetchedLyrics = data.lyrics;
+                const geniusUrl = data.url;
+
+                if (fetchedLyrics) {
+                    // Display the successfully fetched lyrics
+                    lyricDisplay.innerHTML = `
+                        <h3 class="category-title">${songTitle} - Lyrics</h3>
+                        <pre>${fetchedLyrics}</pre>
+                        <p class="link-highlight" style="margin-top: 20px;"><a href="${geniusUrl || '#'}" target="_blank">View Full Page on Genius</a></p>
+                    `;
+                } else {
+                    // Handle server's response if lyrics scraping failed
+                    lyricDisplay.innerHTML = `
+                        <h3 class="category-title">Lookup Failed</h3>
+                        <p>Lyrics could not be fully retrieved for **${songTitle}**.</p>
+                        <p>Genius URL Found: <a href="${geniusUrl}" target="_blank" class="link-highlight">Click to view</a></p>
+                        <pre style="margin-top: 15px;">${data.lyrics}</pre>
+                    `;
+                }
+
+            } catch (error) {
+                console.error('Proxy Error:', error);
+                lyricDisplay.innerHTML = `
+                    <h3 class="category-title">Connection Error 🛑</h3>
+                    <p>Could not connect to the lyrics proxy.</p>
+                    <p>Details: <code>${error.message || 'Unknown Error'}</code></p>
+                `;
+            }
+        }
+
+        songLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const songTitle = link.getAttribute('data-song');
+                fetchLyrics(songTitle);
+          ;
+    });  });
+        })
+</script>
 </body>
 </html>
