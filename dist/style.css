@@ -228,10 +228,18 @@ h1, h2, h3 {
 }
 
 .lyric-display-container pre {
-    white-space: pre-wrap; /* Preserve formatting but wrap long lines */
-    font-family: var(--font-stack);
+    /* Use a fixed-width font to correctly align whitespace and "tab" indentation */
+    font-family: 'Courier New', Courier, monospace;
     font-size: 1em;
-    color: var(--color-text);
+    /* This ensures lines don't wrap mid-stanza unless necessary */
+    white-space: pre-wrap; 
+    /* The color should inherit from the body or be explicitly magenta */
+    color: var(--color-text, magenta);
+    /* Remove default background and borders for a clean look */
+    background-color: transparent; 
+    border: none;
+    padding: 10px;
+    margin: 0;
 }
 
 
