@@ -159,6 +159,82 @@ h1, h2, h3 {
 }
 
 
+/* --- NEW BUTTON STYLES FOR WELCOME SECTION --- */
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.tab-button {
+    flex: 1; /* Makes all buttons equally spaced */
+    padding: 10px 15px;
+    font-size: 1.1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    
+    /* Retro/Vaporwave Button Styling */
+    background-color: var(--color-primary); /* Black background */
+    color: var(--color-highlight); /* Chartreuse text */
+    border: 3px solid var(--color-secondary); /* Magenta border */
+    box-shadow: 0 0 10px var(--color-secondary); /* Magenta glow */
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    text-decoration: none; /* For the 'Coming Soon' anchor tag */
+    display: block; /* Ensure the anchor acts like a button */
+}
+
+.tab-button:hover:not(.active) {
+    background-color: rgba(255, 0, 255, 0.2); /* Light magenta background */
+    color: var(--color-secondary); /* Magenta text on hover */
+    box-shadow: 0 0 15px var(--color-highlight); /* Chartreuse glow on hover */
+    transform: translateY(-2px);
+}
+
+.tab-button.active {
+    background-color: var(--color-secondary); /* Magenta background when active */
+    color: var(--color-primary); /* Black text when active */
+    border-color: var(--color-highlight);
+    box-shadow: 0 0 20px var(--color-highlight);
+    pointer-events: none; /* Don't allow clicking the active button */
+}
+
+/* --- Content Panel & Lyric Display Styles (Tabbed Content) --- */
+
+.content-panel {
+    display: none; /* Hide all panels by default */
+}
+
+.content-panel.active {
+    display: block; /* Show the active panel */
+}
+
+.song-list-container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.lyric-display-container {
+    padding: 15px;
+    background-color: rgba(0, 0, 0, 0.9);
+    border: 2px solid var(--color-secondary);
+    max-height: 400px; /* Set a max height */
+    overflow-y: auto; /* Make it scrollable if content is too long */
+    white-space: pre-wrap; /* For pre-formatted lyrics */
+}
+
+.lyric-display-container pre {
+    white-space: pre-wrap; /* Preserve formatting but wrap long lines */
+    font-family: var(--font-stack);
+    font-size: 1em;
+    color: var(--color-text);
+}
+
+
 /* --- YOUTUBE SECTION STYLES --- */
 
 .youtube-section {
@@ -187,7 +263,7 @@ h1, h2, h3 {
     border: 2px solid chartreuse;
     line-height: 0; 
     
-    /* 💥 THIS ENSURES 4 VIDEOS PER LINE ON DESKTOP 💥 */
+    /* 徴 THIS ENSURES 4 VIDEOS PER LINE ON DESKTOP 徴 */
     width: 23%; 
     min-width: 150px; 
 
@@ -207,7 +283,7 @@ h1, h2, h3 {
     overflow: hidden; 
     border: 2px solid chartreuse;
     
-    /* 💥 ADD THIS LINE TO CENTER THE TITLE TEXT 💥 */
+    /* 徴 ADD THIS LINE TO CENTER THE TITLE TEXT 徴 */
     text-align: center; 
     
     line-height: 0; 
@@ -268,5 +344,9 @@ h1, h2, h3 {
     .video-item {
         width: 100%; /* Stacks videos vertically on mobile */
         min-width: unset;
+    }
+    
+    .button-container {
+        flex-direction: column; /* Stack buttons vertically on mobile */
     }
 }
