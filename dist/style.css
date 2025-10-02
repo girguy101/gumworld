@@ -222,14 +222,14 @@ h1, h2, h3 {
     border-radius: 8px;
     padding: 20px; 
     /* Ensures the inner content can stretch the full column height */
-    max-height:1226px; 
+    height:100%; 
     box-sizing: border-box;
 }
 
 /* **FIX 2: LYRICS TAB PANEL (The outer container) - REMOVE SCROLL/HEIGHT** */
 #lyrics.content-panel {
     max-height: 1226px; 
-    overflow-y: visible; 
+    overflow-y: auto; 
     padding-right: 20px; 
 }
 
