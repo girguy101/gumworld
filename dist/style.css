@@ -222,6 +222,7 @@ h1, h2, h3 {
 /* SCROLLBAR RULE FOR LYRICS TAB (Keeps long song list contained) */
 #lyrics.content-panel {
     min-height: 1226px; 
+    max-height: 1227px;
     overflow-y: auto; 
     padding-right: 15px;
 }
