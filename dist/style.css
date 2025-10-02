@@ -52,21 +52,20 @@ body {
     display: inline-block;
 }
 
-/* Main Layout: Removed old grid properties from content-wrapper */
+/* Main Layout: Removed old grid/flex properties */
 .content-wrapper {
     max-width: 1200px;
     margin: 0 auto;
-    /* Old 'display: grid' removed here */
     gap: 40px;
 }
 
-/* **NEW/FIXED: The main 2/3 and 1/3 grid container** */
+/* **FIXED: The main 2/3 and 1/3 grid container** */
 .site-content-grid {
     display: grid;
     /* 2fr for the left (Image/Lyrics), 1fr for the right (Releases) */
     grid-template-columns: 2fr 1fr;
     gap: 30px; 
-    margin-bottom: 20px;
+    margin-bottom: 40px; /* Increased space above the Videos section */
 }
 
 .left-panel-2-3 {
@@ -74,22 +73,20 @@ body {
     grid-column: 1 / 2;
 }
 
-/* NOTE: The old .top-content-grid rule has been removed as it is now obsolete. */
-
-/* Releases Section Styling (1/3 width, full height, NO SCROLL) */
+/* **FIXED: Releases Section Styling (1/3 width, full height, NO SCROLL)** */
 .releases-section {
     grid-column: 2 / 3; /* Ensures it sits in the second column */
-    /* REMOVED: max-height, min-height, height, and overflow-y: auto */
-    padding: 20px 15px 20px 20px; /* Padding for looks */
-    background-color: rgba(0, 0, 0, 0.85); /* Apply consistent background */
-    border: 2px solid magenta; /* Apply consistent border */
+    /* REMOVED: max-height, overflow-y: auto, and width properties */
+    padding: 20px; 
+    background-color: rgba(0, 0, 0, 0.85); 
+    border: 2px solid magenta; 
     border-radius: 8px;
     min-width: 250px; 
 }
 
 /* Design Element: Content blocks with border and semi-transparent background */
 .welcome-section, .release-category {
-    padding: 0; /* Handled by the content-panel now */
+    padding: 0; 
     background-color: transparent; 
     border: none;
     border-radius: 0;
@@ -140,13 +137,13 @@ a:hover {
     margin-bottom: 5px;
 }
 
-/* Image/Link Styling: Set to 100% of the 2/3 column width */
+/* Image/Link Styling: Set to 100% of the 2/3 width */
 .image-links {
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
     margin: 10px 0;
-    width: 100%; /* FIX: Use full width of the 2/3 column */
+    width: 100%; 
     flex-wrap: wrap; 
 }
 .image-links a {
@@ -178,7 +175,6 @@ h1, h2, h3 {
 
 /* --- TABS STRUCTURE STYLES --- */
 .tabs-container {
-    /* grid-column: 1 / -1; <--- REMOVED */
     margin-bottom: 20px;
 }
 .tab-buttons {
@@ -225,18 +221,18 @@ h1, h2, h3 {
 
 /* SCROLLBAR RULE FOR LYRICS TAB (Keeps long song list contained) */
 #lyrics.content-panel {
-    /* Keep lyrics tab scrollable so it doesn't push the releases section too far down */
     max-height: 700px; 
     overflow-y: auto; 
     padding-right: 15px;
 }
 
-/* --- YOUTUBE SECTION STYLES --- */
+/* **FIXED: YOUTUBE SECTION STYLES (Containerized)** */
 .youtube-section {
-    /* Sits outside the grid, takes full width */
-    padding: 20px 0 0 0; 
-    background-color: transparent; 
-    border: none;
+    /* Sits outside the grid, takes full width, now has a container style */
+    padding: 20px; 
+    background-color: rgba(0, 0, 0, 0.85); /* Added background */
+    border: 2px solid magenta; /* Added border */
+    border-radius: 8px;
     margin-top: 20px; 
 }
 
@@ -275,4 +271,58 @@ h1, h2, h3 {
     background-color: rgba(0, 0, 0, 0.5); 
 }
 
-/* --- LYRIC DISPLAY
+/* --- LYRIC DISPLAY CONTAINER STYLES (Beneath each song) --- */
+.lyric-display-container {
+    max-height: 800px; 
+    overflow-y: auto; 
+    border: 1px solid magenta; 
+    padding: 15px;
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+    width: 100%; 
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.lyric-display-container pre {
+    white-space: pre-wrap; 
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1em;
+    color: var(--color-text, magenta);
+    background-color: transparent; 
+    padding: 0;
+    margin: 0;
+}
+
+
+/* Responsive Design: Stacking on smaller screens */
+@media (max-width: 768px) {
+    
+    /* Stack the new 2/3 and 1/3 columns vertically on mobile */
+    .site-content-grid {
+        grid-template-columns: 1fr; /* Single column */
+        gap: 0;
+    }
+    
+    /* Ensure the releases section is visible and flows below the tabs on mobile (full height) */
+    .releases-section {
+        grid-column: 1 / -1; 
+        max-height: none;
+        overflow-y: visible;
+        padding: 20px; 
+        margin-top: 20px; 
+    }
+    
+    .left-panel-2-3 {
+        grid-column: 1 / -1;
+    }
+
+    .image-links a {
+        width: 48%; 
+        height: 300px; 
+    }
+
+    .video-item {
+        width: 100%; 
+        min-width: unset;
+    }
+}
