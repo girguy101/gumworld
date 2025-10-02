@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>xgum central, USA</title>
     <link href="dist/style.css" rel="stylesheet">
+    <meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content="@xgum9" />
+		<meta name="twitter:creator" content="@xgum" />
+		<meta property="og:url" content="https://gumworld.org/" />
+		<meta property="og:title" content="The home of xgum's music" />
+		<meta property="og:description" content="xgum creates original music about nostalgia, relationships, and tragedy" />
+		<meta property="og:image" content="https://gumworld.org/dist/pic.png" />
 </head>
 <body>
     <div id="winamp-container"></div>
@@ -66,11 +73,7 @@
     <main class="content-wrapper">
         
         <section class="welcome-section">
-            <h2 class="section-title">Welcome to the mf land o xgubgub!!!</h2>
-
-            <p>This is a hold-up! Here's my mf <a href="https://artists.spotify.com/c/artist/4CimxjYz8VEqA3WwUzH198/profile/overview" class="link-highlight" target="_blank">spotify</a>.</p>
-            <p>xgum is <strong>cool</strong> and <em>1/16th italian</em> bottom text.</p>
-            <p>Fun fact: xgum</p>
+            <h2 class="section-title">Welcome to the music of xgum</h2>
             
             <div class="image-links">
                 <a href="https://linktr.ee/xgum" target="_blank"><img src="dist/linktree.png" alt="Linktree" class="profile-img"></a>
@@ -246,6 +249,94 @@
             </div>
         </section>
     </main>
-    
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+          const tabButtons = document.querySelectorAll('.tab-button');
+          const contentPanels = document.querySelectorAll('.content-panel');
+          const lyricDisplay = document.getElementById('lyric-display');
+          const songLinks = document.querySelectorAll('.song-list a');
+          
+          // --- PROXY URL ---
+          // 🛑 REPLACE THIS WITH YOUR DEPLOYED CLOUDFLARE WORKER URL! 🛑
+          const LYRICS_PROXY_URL = 'genius-proxy-xgum.6w2hbj9tdm.workers.dev'; 
+          // -----------------
+  
+          // --- Tab Switching Logic (Unchanged) ---
+          tabButtons.forEach(button => {
+              if (button.tagName === 'BUTTON') {
+                  button.addEventListener('click', () => {
+                      const tabId = button.getAttribute('data-tab');
+  
+                      tabButtons.forEach(btn => btn.classList.remove('active'));
+                      contentPanels.forEach(panel => panel.classList.remove('active'));
+  
+                      button.classList.add('active');
+                      document.getElementById(tabId).classList.add('active');
+                      
+                      if (tabId !== 'lyrics') {
+                           lyricDisplay.innerHTML = '<p>Click a song title to begin the Genius API lookup.</p>';
+                      }
+                  });
+              }
+          });
+          
+          // --- Secure Proxy API Implementation ---
+          async function fetchLyrics(songTitle) {
+              
+              lyricDisplay.innerHTML = `
+                  <h3 class="category-title">Searching Genius for: ${songTitle}</h3>
+                  <p>Loading lyrics from Cloudflare Worker...</p>
+              `;
+              
+              // Construct the query string to send to your secure server proxy
+              const url = `${LYRICS_PROXY_URL}?q=xgum ${encodeURIComponent(songTitle)}`;
+  
+              try {
+                  const response = await fetch(url);
+  
+                  if (!response.ok) {
+                      throw new Error(`Server responded with status: ${response.status} (${response.statusText})`);
+                  }
+  
+                  const data = await response.json(); 
+                  const fetchedLyrics = data.lyrics;
+                  const geniusUrl = data.url;
+  
+                  if (fetchedLyrics) {
+                      // Display the successfully fetched lyrics
+                      lyricDisplay.innerHTML = `
+                          <h3 class="category-title">${songTitle} - Lyrics</h3>
+                          <pre>${fetchedLyrics}</pre>
+                          <p class="link-highlight" style="margin-top: 20px;"><a href="${geniusUrl || '#'}" target="_blank">View Full Page on Genius</a></p>
+                      `;
+                  } else {
+                      // Handle server's response if lyrics scraping failed
+                      lyricDisplay.innerHTML = `
+                          <h3 class="category-title">Lookup Failed</h3>
+                          <p>Lyrics could not be fully retrieved for **${songTitle}**.</p>
+                          <p>Genius URL Found: <a href="${geniusUrl}" target="_blank" class="link-highlight">Click to view</a></p>
+                          <pre style="margin-top: 15px;">${data.lyrics}</pre>
+                      `;
+                  }
+  
+              } catch (error) {
+                  console.error('Proxy Error:', error);
+                  lyricDisplay.innerHTML = `
+                      <h3 class="category-title">Connection Error 🛑</h3>
+                      <p>Could not connect to the lyrics proxy.</p>
+                      <p>Details: <code>${error.message || 'Unknown Error'}</code></p>
+                  `;
+              }
+          }
+  
+          songLinks.forEach(link => {
+              link.addEventListener('click', (e) => {
+                  e.preventDefault();
+                  const songTitle = link.getAttribute('data-song');
+                  fetchLyrics(songTitle);
+            ;
+      });  });
+          })
+  </script>
 </body>
 </html>
