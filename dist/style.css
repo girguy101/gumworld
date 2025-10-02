@@ -221,8 +221,7 @@ h1, h2, h3 {
 
 /* SCROLLBAR RULE FOR LYRICS TAB (Keeps long song list contained) */
 #lyrics.content-panel {
-    min-height: 1226px; 
-    max-height: 1227px;
+    max-height: 700px; 
     overflow-y: auto; 
     padding-right: 15px;
 }
@@ -301,16 +300,24 @@ h1, h2, h3 {
     /* Stack the new 2/3 and 1/3 columns vertically on mobile */
     .site-content-grid {
         grid-template-columns: 1fr; /* Single column */
-        gap: 0;
+        gap: 30px;
+        margin-bottom: 40px;
+        align-items: stretch;
     }
     
+    .left-panel-2-3 {
+        grid-column: 1/2;
+        min-height: 100%;
+    }
     /* Ensure the releases section is visible and flows below the tabs on mobile (full height) */
     .releases-section {
-        grid-column: 1 / -1; 
-        max-height: none;
-        overflow-y: visible;
+        grid-column: 2 / 3; /* Ensures it sits in the second column */
+        /* This section remains the height determinant */
         padding: 20px; 
-        margin-top: 20px; 
+        background-color: rgba(0, 0, 0, 0.85); 
+        border: 2px solid magenta; 
+        border-radius: 8px;
+        min-width: 250px; 
     }
     
     .left-panel-2-3 {
