@@ -74,7 +74,8 @@ body {
 /* NEW RULE: Make the releases section scrollable and fixed height */
 .releases-section {
     /* Set max height to prevent overflow into the video section */
-    max-height: 600px; 
+    max-height: auto; 
+    width:66.66%;
     /* Add scrollbar only to this section when content overflows */
     overflow-y: auto; 
     padding-right: 15px; /* Aesthetic space for the scrollbar */
