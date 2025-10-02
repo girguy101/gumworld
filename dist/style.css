@@ -66,15 +66,16 @@ body {
     grid-template-columns: 2fr 1fr;
     gap: 30px; 
     margin-bottom: 40px; 
-    /* Ensures the row height is determined by the content, allowing the taller column to stretch the row */
+    /* NEW: This makes the grid row height determined by the tallest content (Releases) */
     align-items: stretch; 
 }
 
 .left-panel-2-3 {
     /* Container for the tabs and switchable content (2/3 width) */
     grid-column: 1 / 2;
-    /* FIX: Ensure the left column stretches to match the taller Releases column. */
-    min-height: 100%; 
+    /* NEW: Forces the panel to fill the height provided by the stretching grid row */
+    min-height: 1226px;
+    max-height: 1227px; 
 }
 
 /* ... Around line 84 ... */
