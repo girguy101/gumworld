@@ -78,7 +78,7 @@
             <div class="button-container">
                 <button class="tab-button active" data-tab="links">Links 🔗</button>
                 <button class="tab-button" data-tab="lyrics">Lyrics 📝</button>
-                <a href="https://gumworld.org" class="tab-button coming-soon-link">Coming Soon 🚧</a>
+                <a href="https://gumworld.org" class="tab-button coming-soon-link" data-tab="coming-soon">Coming Soon 🚧</a>
             </div>
 
             <div id="links" class="content-panel active">
@@ -106,7 +106,7 @@
                         </ul>
                 </div>
                 <div id="lyric-display" class="lyric-display-container">
-                    <p>Click a song title to see the lyrics (requires a backend service for secure API calls).</p>
+                    <p>Click a song title to begin the Genius API lookup.</p>
                 </div>
             </div>
 
@@ -118,6 +118,7 @@
 
         <section class="releases-section">
             <h2 class="section-title">Releases:</h2>
+
             <div class="release-category">
                 <h3 class="category-title">Albums</h3>
                 <ul class="release-list">
@@ -127,6 +128,7 @@
                     <li><a href="https://xgum.bandcamp.com/album/GROUND-INSTRUCTION-TRAINING" target="_blank">GROUND INSTRUCTION TRAINING (2025)</a></li>
                 </ul>
             </div>
+
             <div class="release-category">
                 <h3 class="category-title">EPs</h3>
                 <ul class="release-list">
@@ -140,6 +142,7 @@
                     <li><a href="https://xgum.bandcamp.com/album/x" target="_blank">X (2025)</a></li>
                 </ul>
             </div>
+
             <div class="release-category">
                 <h3 class="category-title">Singles</h3>
                 <ul class="release-list">
@@ -162,6 +165,8 @@
                     <li><a href="https://xgum.bandcamp.com/track/episodes-of-mood" target="_blank">Episodes Of mood (2023)</a></li>
                     <li><a href="https://xgum.bandcamp.com/album/not-right" target="_blank">NOT RIGHT (2023)</a></li>
                     <li><a href="https://xgum.bandcamp.com/album/dnr" target="_blank">DNR (2025)</a></li>
+
+                    
                 </ul>
             </div>
         </section>
@@ -273,29 +278,35 @@
             </div>
         </section>
     </main>
-    <script>
+    
+<script>
     document.addEventListener('DOMContentLoaded', () => {
         const tabButtons = document.querySelectorAll('.tab-button');
         const contentPanels = document.querySelectorAll('.content-panel');
         const lyricDisplay = document.getElementById('lyric-display');
         const songLinks = document.querySelectorAll('.song-list a');
         
-        // --- PROXY URL --- fuck u dazx
-        const LYRICS_PROXY_URL = ' genius-proxy-xgum.6w2hbj9tdm.workers.dev'; 
-        // -----------------
+        // --- PROXY URL ---
+        // 🛑 REPLACE THIS WITH YOUR DEPLOYED CLOUDFLARE WORKER URL! 🛑
+        const LYRICS_PROXY_URL = 'https://genius-proxy-xgum.workers.dev'; 
+        // ----------------------------------------
 
-        // --- Tab Switching Logic (Unchanged) ---
+        // --- Tab Switching Logic ---
         tabButtons.forEach(button => {
-            if (button.tagName === 'BUTTON') {
+            // Check if the element is a button or an anchor with a data-tab attribute
+            if (button.tagName === 'BUTTON' || (button.tagName === 'A' && button.hasAttribute('data-tab'))) {
                 button.addEventListener('click', () => {
                     const tabId = button.getAttribute('data-tab');
 
+                    // Remove 'active' from all buttons and panels
                     tabButtons.forEach(btn => btn.classList.remove('active'));
                     contentPanels.forEach(panel => panel.classList.remove('active'));
 
+                    // Add 'active' to the clicked button and corresponding panel
                     button.classList.add('active');
                     document.getElementById(tabId).classList.add('active');
                     
+                    // Reset lyric display when switching away from the lyrics tab
                     if (tabId !== 'lyrics') {
                          lyricDisplay.innerHTML = '<p>Click a song title to begin the Genius API lookup.</p>';
                     }
@@ -357,9 +368,9 @@
                 e.preventDefault();
                 const songTitle = link.getAttribute('data-song');
                 fetchLyrics(songTitle);
-          ;
-    });  });
-        })
+            });
+        });
+    });
 </script>
 </body>
 </html>
