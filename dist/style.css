@@ -219,11 +219,8 @@ h1, h2, h3 {
     overflow-y: auto; /* Make it scrollable if content is too long */
 }
 #lyric-display {
-    /* Set the fixed maximum height for the container */
     max-height: 800px; 
-    /* Enable vertical scrolling when content exceeds the max-height */
     overflow-y: auto; 
-    /* Style the box for better visual separation */
     border: 1px solid magenta; 
     padding: 15px;
     margin-top: 20px;
@@ -245,17 +242,14 @@ h1, h2, h3 {
 }
 
 .lyric-display-container pre {
-    /* Use a fixed-width font to correctly align whitespace and "tab" indentation */
+    /* Guarantees whitespace (indentation) and newlines are respected */
+    white-space: pre-wrap; 
+    /* Fixed-width font ensures alignment is correct */
     font-family: 'Courier New', Courier, monospace;
     font-size: 1em;
-    /* This ensures lines don't wrap mid-stanza unless necessary */
-    white-space: pre-wrap; 
-    /* The color should inherit from the body or be explicitly magenta */
     color: var(--color-text, magenta);
-    /* Remove default background and borders for a clean look */
     background-color: transparent; 
-    border: none;
-    padding: 10px;
+    padding: 0;
     margin: 0;
 }
 
