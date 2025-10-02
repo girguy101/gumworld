@@ -19,14 +19,12 @@ body {
 body, h1, h2, h3, p, ul, ol, li, section, header, main, footer, div, a, img {
     margin: 0;
     padding: 0;
-    /* This ensures images and other elements don't get unwanted block spacing */
 }
 
 body {
     background-color: black;
     color: magenta;
     font-family: 'Arial', sans-serif;
-    /* Retaining the background image and making it cover the screen */
     background-image: url('ax.jpg');
     background-size: cover; 
     background-attachment: fixed; 
@@ -35,14 +33,9 @@ body {
 }
 
 #winamp-container {
-    /* 1. Remove it from the normal document flow */
     position: fixed; 
-    
-    /* 2. Pin it to the top-left corner of the viewport (browser window) */
     top: 0;
     left: 0;
-    
-    /* Optional: Ensure it sits above other content */
     z-index: 1000; 
 }
 /* Header Styling - Centered Title with a dark background for readability */
@@ -61,19 +54,19 @@ body {
 .content-wrapper {
     max-width: 1200px;
     margin: 0 auto;
+    /* Use grid for tabs and main content */
     display: grid;
-    /* Two columns: 2/3 width for Welcome, 1/3 width for Releases */
-    grid-template-columns: 2fr 1fr; 
+    grid-template-columns: 1fr; /* Single column for the main tabs container */
     gap: 40px;
 }
 
 /* Design Element: Content blocks with border and semi-transparent background */
 .welcome-section, .releases-section, .release-category {
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.85); 
-    border: 2px solid black; 
-    border-radius: 8px;
-    margin-bottom: 20px; /* Space between content blocks on mobile */
+    padding: 0; /* Handled by the content-panel now */
+    background-color: transparent; 
+    border: none;
+    border-radius: 0;
+    margin-bottom: 20px;
 }
 
 /* Typography and Color */
@@ -96,8 +89,8 @@ body {
 a {
     color: chartreuse; 
     text-decoration: none;
-        display: inline-block; /* Essential to allow transform to work on inline elements */
-    transition: color 0.3s ease, transform 0.3s ease; /* Adds transform to the transition list */
+    display: inline-block;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
 a:hover {
@@ -112,7 +105,7 @@ a:hover {
 
 /* List Styling */
 .release-list {
-    list-style-type: circle; /* Interesting list marker */
+    list-style-type: circle;
     padding-left: 20px;
 }
 
@@ -120,21 +113,18 @@ a:hover {
     margin-bottom: 5px;
 }
 
-/* Image/Link Styling using Flexbox to align them */
+/* Image/Link Styling */
 .image-links {
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
     margin: 10px 0;
-    /* ESSENTIAL: Allows two items to wrap to the next line */
     flex-wrap: wrap; 
 }
 .image-links a {
     width: 48%; 
-    
-    /* Uniform Height Settings */
     display: block; 
-    height: 400px; /* SETS THE FIXED UNIFORM HEIGHT */
+    height: 400px; 
     overflow: hidden; 
     margin-bottom: 5px; 
     border: 3px solid chartreuse; 
@@ -149,8 +139,8 @@ a:hover {
 }
 
 .profile-img:hover {
-    transform: scale(1.05); /* Modern visual cue on hover */
-    box-shadow: 0 0 15px chartreuse; /* Adding a glow effect */
+    transform: scale(1.05);
+    box-shadow: 0 0 15px chartreuse;
 }
 
 /* Retro/Vaporwave Glow Effect */
@@ -158,135 +148,73 @@ h1, h2, h3 {
     text-shadow: 0 0 5px var(--color-secondary), 0 0 10px var(--color-secondary);
 }
 
-
-/* --- NEW BUTTON STYLES FOR WELCOME SECTION --- */
-
-.button-container {
-    display: flex;
-    justify-content: space-around;
+/* --- TABS STRUCTURE STYLES --- */
+.tabs-container {
+    grid-column: 1 / -1; 
     margin-bottom: 20px;
-    gap: 10px;
 }
-
+.tab-buttons {
+    display: flex;
+    justify-content: flex-start;
+    border-bottom: 2px solid magenta;
+    margin-bottom: 0;
+}
 .tab-button {
-    flex: 1; /* Makes all buttons equally spaced */
     padding: 10px 15px;
-    font-size: 1.1em;
-    font-weight: bold;
-    text-transform: uppercase;
-    
-    /* Retro/Vaporwave Button Styling */
-    background-color: var(--color-primary); /* Black background */
-    color: var(--color-highlight); /* Chartreuse text */
-    border: 3px solid var(--color-secondary); /* Magenta border */
-    box-shadow: 0 0 10px var(--color-secondary); /* Magenta glow */
+    background-color: rgba(0, 0, 0, 0.7);
+    color: chartreuse;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-bottom: none;
+    margin-right: 5px;
     cursor: pointer;
-    transition: all 0.2s ease;
-    text-align: center;
-    text-decoration: none; /* For the 'Coming Soon' anchor tag */
-    display: block; /* Ensure the anchor acts like a button */
+    transition: all 0.3s ease;
 }
-
-.tab-button:hover:not(.active) {
-    background-color: rgba(255, 0, 255, 0.2); /* Light magenta background */
-    color: var(--color-secondary); /* Magenta text on hover */
-    box-shadow: 0 0 15px var(--color-highlight); /* Chartreuse glow on hover */
-    transform: translateY(-2px);
+.tab-button:hover {
+    background-color: rgba(50, 0, 50, 0.9);
 }
-
 .tab-button.active {
-    background-color: var(--color-secondary); /* Magenta background when active */
-    color: var(--color-primary); /* Black text when active */
-    border-color: var(--color-highlight);
-    box-shadow: 0 0 20px var(--color-highlight);
-    pointer-events: none; /* Don't allow clicking the active button */
+    background-color: magenta;
+    color: black;
+    border-color: chartreuse;
+    border-radius: 5px 5px 0 0;
+    font-weight: bold;
+    pointer-events: none;
 }
 
-/* --- Content Panel & Lyric Display Styles (Tabbed Content) --- */
-
+/* --- CONTENT PANEL & SCROLLING FIX --- */
 .content-panel {
-    display: none; /* Hide all panels by default */
-}
-
-.content-panel.active {
-    display: block; /* Show the active panel */
-}
-
-.song-list-container {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-    overflow-y: auto; /* Make it scrollable if content is too long */
-}
-
-#lyrics.content-panel {
-    /* Set a maximum height for the content area (adjust 700px as needed) */
-    max-height: 700px; 
-    
-    /* Enable vertical scrolling when content exceeds the max-height */
-    overflow-y: auto; 
-    
-    /* Give it some padding to look clean */
-    padding-right: 15px; /* Adds space so the scrollbar doesn't hug the text */
-}
-
-/* Ensure other content panels still work correctly, if they are the same height */
-#links.content-panel {
-    max-height: 700px;
-    overflow-y: auto;
-    padding-right: 15px;
-}
-
-#lyric-display {
-    max-height: 800px; 
-    overflow-y: auto; 
-    border: 1px solid magenta; 
-    padding: 15px;
-    margin-top: 20px;
-}
-
-/* Ensure the <pre> tag inside the container doesn't override the scrolling */
-#lyric-display pre {
-    /* IMPORTANT: The content inside the scrollable box should not be restricted */
-    max-height: none; 
-}
-
-.lyric-display-container {
-    max-height: 800px; 
-    overflow-y: auto; 
-    border: 1px solid magenta; 
-    padding: 15px;
-    margin-top: 10px; 
-    margin-bottom: 10px; 
-    width: 100%; 
-}
-
-/* Must be present in style.css */
-.lyric-display-container pre {
-    white-space: pre-wrap; 
-    font-family: 'Courier New', Courier, monospace;
-    font-size: 1em;
-    color: var(--color-text, magenta);
-    background-color: transparent; 
+    display: none;
     padding: 0;
-    margin: 0;
+}
+.content-panel.active {
+    display: block;
+}
+
+/* SCROLLBAR RULE FOR TABS (Fixes the "too tall" issue) */
+#lyrics.content-panel, 
+#links.content-panel {
+    max-height: 700px; /* Max height for the entire tab content */
+    overflow-y: auto; 
+    padding-right: 15px; 
+    background-color: rgba(0, 0, 0, 0.85); 
+    border: 2px solid magenta;
+    border-radius: 8px;
+    padding: 20px; 
 }
 
 
 /* --- YOUTUBE SECTION STYLES --- */
-
+/* YouTube section is now inside #links, so we preserve its grid-column property */
 .youtube-section {
-    /* Make this section span across both columns in the grid layout */
     grid-column: 1 / -1; 
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.85); 
-    border: 2px solid magenta;
-    border-radius: 8px;
+    padding: 20px 0 0 0; /* Removed top/bottom padding to fit cleanly in the tab */
+    background-color: transparent; /* Changed to transparent since the tab panel handles the background */
+    border: none;
     margin-top: 20px; 
 }
 
 /* Flexbox for the video layout */
-
 .video-grid {
     display: flex;
     flex-wrap: wrap; 
@@ -301,11 +229,8 @@ h1, h2, h3 {
     border: 2px solid chartreuse;
     line-height: 0; 
     
-    /* 徴 THIS ENSURES 4 VIDEOS PER LINE ON DESKTOP 徴 */
     width: 23%; 
     min-width: 150px; 
-
-    /* Smooth transition for the hover effect */
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
@@ -315,40 +240,53 @@ h1, h2, h3 {
     display: block;
 }
 
-/* SCALE-ON-HOVER EFFECT */
 .video-item {
     display: block;
     overflow: hidden; 
     border: 2px solid chartreuse;
-    
-    /* 徴 ADD THIS LINE TO CENTER THE TITLE TEXT 徴 */
     text-align: center; 
-    
     line-height: 0; 
     width: 23%; 
     min-width: 150px; 
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
-
-/* --- NEW RULE FOR THE VIDEO TITLE --- */
 .video-title {
     display: block;
     color: magenta;
-    padding: 5px 5px 10px 5px; /* Adds space around the text */
+    padding: 5px 5px 10px 5px; 
     line-height: 1.2; 
     font-size: 0.9em;
     font-weight: bold;
-    /* This makes the text readable over dark backgrounds */
     background-color: rgba(0, 0, 0, 0.5); 
 }
 
+/* --- LYRIC DISPLAY CONTAINER STYLES (Beneath each song) --- */
+.lyric-display-container {
+    max-height: 800px; /* 800px fixed height */
+    overflow-y: auto; 
+    border: 1px solid magenta; 
+    padding: 15px;
+    margin-top: 10px; 
+    margin-bottom: 10px; 
+    width: 100%; 
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.lyric-display-container pre {
+    white-space: pre-wrap; /* RESPECTS NEWLINES AND WRAPS TEXT */
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1em;
+    color: var(--color-text, magenta);
+    background-color: transparent; 
+    padding: 0;
+    margin: 0;
+}
 
 
 /* Responsive Design: Stacking on smaller screens */
 @media (max-width: 768px) {
     .content-wrapper {
-        /* On small screens, switch to a single column layout */
         grid-template-columns: 1fr;
     }
 
@@ -357,15 +295,12 @@ h1, h2, h3 {
         justify-content: space-around;
         align-items: flex-start;
         margin: 10px 0;
-        /* ESSENTIAL: Allows two items to wrap to the next line */
         flex-wrap: wrap; 
     }
     .image-links a {
         width: 48%; 
-        
-        /* Uniform Height Settings */
         display: block; 
-        height: 400px; /* SETS THE FIXED UNIFORM HEIGHT */
+        height: 400px;
         overflow: hidden; 
         margin-bottom: 5px; 
         border: 3px solid chartreuse; 
@@ -380,11 +315,7 @@ h1, h2, h3 {
     }
 
     .video-item {
-        width: 100%; /* Stacks videos vertically on mobile */
+        width: 100%; 
         min-width: unset;
-    }
-    
-    .button-container {
-        flex-direction: column; /* Stack buttons vertically on mobile */
     }
 }
