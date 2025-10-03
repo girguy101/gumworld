@@ -26,85 +26,351 @@
                   artist: "xgum",
                   title: "Jainism Stance (Instrumental)",
               },
-              url: "https://files.catbox.mo...", // (Rest of initialTracks)
+              url: "https://files.catbox.moe/y14qzr.wav",
+          }, {
+              metaData: {
+                  artist: "xgum",
+                  title: "RAF",
+              },
+              url: "https://files.catbox.moe/f9umxq.wav",
           },
-          // ... (rest of your existing tracks)
-      ]
+          {
+              metaData: {
+                  artist: "xgum",
+                  title: "Beware (Instrumental)",
+              },
+              url: "https://files.catbox.moe/8lyi7r.wav",
+          },
+          {
+              metaData: {
+                  artist: "xgum",
+                  title: "Bottle Song (Instrumental)",
+              },
+              url: "https://files.catbox.moe/dh5kfc.wav",
+          },
+          {
+              metaData: {
+                  artist: "xgum",
+                  title: "It's Not Worth It - That's Not How It Goes",
+              },
+              url: "https://files.catbox.moe/7xt956.wav",
+          },
+        ],
+      initialSkin: {
+          url: "webamp/Pinkstar.wsz"
+      },
   });
-  webamp.renderWhenReady(document.getElementById('winamp-container'));
+  webamp.renderWhenReady(document.getElementById('winamp-container'))
+    .then(() => {
+     webamp.play();
+    });
   </script>
+    <header class="site-header">
+        <h1>AT LONG LAST, YOU'VE FOUND GUMWORLD</h1>
+    </header>
 
     <main class="content-wrapper">
-        <section class="site-content-grid">
-            <div class="column-left">
-                </div>
+        
+        <div class="site-content-grid">
+        
+            <div class="left-panel-2-3">
+                <section class="tabs-container">
+                    <div class="tab-buttons">
+                        <a href="#" data-tab="links" class="tab-button active">Links</a>
+                        <a href="#" data-tab="lyrics" class="tab-button">Lyrics</a>
+                        <a href="#" target="_blank" class="tab-button">More Gum Soon!</a>
+                    </div>
+
+                    <div id="links" class="content-panel active">
+                        <section class="welcome-section">
+                            <h2 class="section-title">Welcome to the music of xgum</h2>
+                            
+                            <div class="image-links">
+                                <a href="https://linktr.ee/xgum" target="_blank"><img src="dist/linktree.png" alt="Linktree" class="profile-img"></a>
+                                <a href="https://www.youtube.com/@xgum" target="_blank"><img src="dist/bppng2.png" alt="YouTube" class="profile-img"></a>
+                                <a href="https://open.spotify.com/artist/4CimxjYz8VEqA3WwUzH198" target="_blank"><img src="dist/spotify.png" alt="Spotify" class="profile-img"></a>
+                                <a href="https://soundcloud.com/xxxgum" target="_blank"><img src="dist/soundcloud.png" alt="SoundCloud" class="profile-img"></a>
+                                <a href="https://genius.com/artists/Xgum" target="_blank"><img src="dist/genius.png" alt="Genius" class="profile-img"></a>
+                                <a href="https://www.discogs.com/user/xgummi" target="_blank"><img src="dist/discogs.png" alt="Discogs" class="profile-img"></a>
+                            </div>
+                        </section>
+                    </div>
+
+                    <div id="lyrics" class="content-panel">
+                        <div class="song-list-container">
+                            <h3 class="category-title">Select a Song for Lyrics:</h3>
+                            <ul class="release-list song-list">
+                                <li data-song="Pretty Honey"><a href="#">Pretty Honey</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Monkey"><a href="#">Monkey</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="DNR"><a href="#">DNR</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Hundred Acre Woods (Youtube Version)"><a href="#">Hundred Acre Woods (Youtube Version)</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Meld"><a href="#">Meld</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Meteor Crater"><a href="#">Meteor Crater</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="To Hell"><a href="#">To Hell</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="300 Dollars"><a href="#">300 Dollars</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Hundreds Of Dollars"><a href="#">Hundreds Of Dollars</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="On Umbrella"><a href="#">On Umbrella</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="The Steam"><a href="#">The Steam</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Dambolo"><a href="#">Dambolo</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="I'm Dad"><a href="#">I'm Dad</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="White Nissan SUV"><a href="#">White Nissan SUV</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="VVVVVVVTECH (Ft. Payday Monsanto)"><a href="#">VVVVVVVTECH (Ft. Payday Monsanto)</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Ground Instruction Training"><a href="#">Ground Instruction Training</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Hundred Acre Woods"><a href="#">Hundred Acre Woods</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="To Say The Least (Ft. Scott Walker & Sonny Sharrock)"><a href="#">To Say The Least (Ft. Scott Walker & Sonny Sharrock)</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Nausea"><a href="#">Nausea</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Welsh Thin Reader"><a href="#">Welsh Thin Reader</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="I Do Mean Anything"><a href="#">I Do Mean Anything</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Darkened A Dachsund"><a href="#">Darkened A Dachsund</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Fuck You All"><a href="#">Fuck You All</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="What The Fuck - Original Version"><a href="#">What The Fuck - Original Version</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Not Right"><a href="#">Not Right</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Episodes Of Mood"><a href="#">Episodes Of Mood</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Recent Failure Memory (Mixed Version)"><a href="#">Recent Failure Memory (Mixed Version)</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Throwing Away (Vocal Version)"><a href="#">Throwing Away (Vocal Version)</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Quiet"><a href="#">Quiet</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Machine Girl (Redux)"><a href="#">Machine Girl (Redux)</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Recent Failure Memory"><a href="#">Recent Failure Memory</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="In Moratuwa"><a href="#">In Moratuwa</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Beeline"><a href="#">Beeline</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Belto"><a href="#">Belto</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Catch You On A Bad Day"><a href="#">Catch You On A Bad Day</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="RAF"><a href="#">RAF</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Toxic Incidence"><a href="#">Toxic Incidence</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Bright Colors"><a href="#">Bright Colors</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Machine Girl"><a href="#">Machine Girl</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="DEER"><a href="#">DEER</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="commonfolksong"><a href="#">commonfolksong</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Invited In"><a href="#">Invited In</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="I Love Beijing Tiananmen"><a href="#">I Love Beijing Tiananmen</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Beware"><a href="#">Beware</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="The Great Parade / Arrival of Cactus Gum"><a href="#">The Great Parade / Arrival of Cactus Gum</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Hard Time"><a href="#">Hard Time</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Here's A Body"><a href="#">Here's A Body</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Bottle Song"><a href="#">Bottle Song</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Duck With A Dull Bill"><a href="#">Duck With A Dull Bill</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="This Is Exactly The Look"><a href="#">This Is Exactly The Look</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="The Antigonist Fix"><a href="#">The Antigonist Fix</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="MYYOL"><a href="#">MYYOL</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="For Only This Voyeur"><a href="#">For Only This Voyeur</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Chair From The Velvet Shoestring"><a href="#">Chair From The Velvet Shoestring</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Pierre, The Father"><a href="#">Pierre, The Father</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="JETS"><a href="#">JETS</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="I Never Finish Anything"><a href="#">I Never Finish Anything</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Apple Internet Phones"><a href="#">Apple Internet Phones</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Big Old Mansion"><a href="#">Big Old Mansion</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Circles / Denouement Of This"><a href="#">Circles / Denouement Of This</a><div class="lyric-display-container" style="display: none;"></div></li>
+                                <li data-song="Earth Sun Spider"><a href="#">Earth Sun Spider</a><div class="lyric-display-container" style="display: none;"></div></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+            </div>
             
-            <div class="column-right">
-                <header class="site-header">
-                    <h1>xgum central, USA</h1>
-                </header>
-                <div class="song-list-container">
-                    <ul id="song-list">
-                        <li data-song="Jainism Stance">
-                            <a href="#" class="song-link">Jainism Stance</a>
-                            <div class="lyric-display-container" style="display: none;"></div>
-                        </li>
-                        <li data-song="Tears of Blue">
-                            <a href="#" class="song-link">Tears of Blue</a>
-                            <div class="lyric-display-container" style="display: none;"></div>
-                        </li>
-                        </ul>
+            <section class="releases-section">
+                <h2 class="section-title">Releases:</h2>
+
+                <div class="release-category">
+                    <h3 class="category-title">Albums</h3>
+                    <ul class="release-list">
+                        <li><a href="https://xgum.bandcamp.com/album/ruth" target="_blank">Ruth (2019)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/album/pinkgum" target="_blank">pink gum (2023)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/album/instillment-of-new-core-belief" target="_blank">Instillment of New Core Belief (2023)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/album/GROUND-INSTRUCTION-TRAINING" target="_blank">GROUND INSTRUCTION TRAINING (2025)</a></li>
+                    </ul>
                 </div>
+
+                <div class="release-category">
+                    <h3 class="category-title">EPs</h3>
+                    <ul class="release-list">
+                        <li><a href="https://xgum.bandcamp.com/album/cactus-gum" target="_blank">Cactus Gum (2023)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/album/machine-girl" target="_blank">Machine Girl (2023)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/album/toxic-incidence" target="_blank">Toxic Incidence (2023)</a></li>
+                        <li><a href="ass="video-title">Jainism Stance</span>
+                </a>
+
+                <a href="https://www.youtube.com/watch?v=Qt0aSXyeN8Q" target="_blank" class="video-item">
+                    <img src="https://img.youtube.com/vi/Qt0aSXyeN8Q/hqdefault.jpg" alt="" class="video-thumbnail">
+                    <span class="video-title">Duck With A Dull Bill</span>
+                </a>
+
+                <a href=https://xgum.bandcamp.com/album/quiet" target="_blank">Quiet (2023)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/album/not-right" target="_blank">[not right] (2023)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/album/xi-xi" target="_blank">xi xi (2023)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/album/she-can-navigate-it-in-the-dark" target="_blank">She Can Navigate It In The Dark (2024)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/album/x" target="_blank">X (2025)</a></li>
+                    </ul>
+                </div>
+
+                <div class="release-category">
+                    <h3 class="category-title">Singles</h3>
+                    <ul class="release-list">
+                        <li><a href="https://xgum.bandcamp.com/track/i-never-finish-anything" target="_blank"> I Never Finish Anything (2019)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/track/jets" target="_blank"> JETS (2020)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/track/chair-from-the-velvet-shoestring-waterless-death-cough" target="_blank">Chair From The Velvet Shoestring (2021)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/track/for-only-this-voyeur" target="_blank">For Only This Voyeur (2021)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/track/the-antigonist-fix" target="_blank">The Antigonist Fix (2022)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/track/this-is-exactly-the-look" target="_blank">This Is Exactly The Look (2022)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/track/duck-with-a-dull-bill" target="_blank">Duck With A Dull Bill (2022)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/album/jainism-stance" target="_blank">Jainism Stance (2022)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/track/bottle-song" target="_blank">bottle song (2022)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/album/heres-a-body" target="_blank">Here's A Body (2023)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/track/hard-time" target="_blank">Hard Time (2023)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/album/what-the-fuck" target="_blank">What The Fuck (2023)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/album/beware" target="_blank">Beware (2023)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/track/i-love-beijing-tiananmen" target="_blank">I Love Beijing Tiananmen (2023)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/track/deer" target="_blank">Deer (2023)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/track/beach-fagz-2" target="_blank">Beach Fagz 2 (2023)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/track/episodes-of-mood" target="_blank">Episodes Of mood (2023)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/album/not-right" target="_blank">NOT RIGHT (2023)</a></li>
+                        <li><a href="https://xgum.bandcamp.com/album/dnr" target="_blank">DNR (2025)</a></li>
+                    </ul>
+                </di>
+            </section>
+        
+        </div>
+        <section class="youtube-section">
+            <div style="display: flex; justify-content: center;">
+                <h2 class="section-title">MUSIC VIDEOS I GONE AND MADE 📺</h2>
+            </div>
+            <div class="video-grid">
+                <a href="https://www.youtube.com/watch?v=_6KVduS5nXE" target="_blank" class="video-item">
+                    <img src="https://img.youtube.com/vi/_6KVduS5nXE/hqdefault.jpg" alt="DNR" class="video-thumbnail">
+                    <span class="video-title">DNR</span>
+                </a>
+                <a href="https://www.youtube.com/watch?v=4DUSnxTZ70A" target="_blank" class="video-item">
+                    <img src="https://img.youtube.com/vi/4DUSnxTZ70A/hqdefault.jpg" alt="Monkey" class="video-thumbnail">
+                    <span class="video-title">Monkey</span>
+                </a>
+                <a href="https://www.youtube.com/watch?v=zVXZCOMkXek" target="_blank" class="video-item">
+                    <img src="https://img.youtube.com/vi/zVXZCOMkXek/hqdefault.jpg" alt="" class="video-thumbnail">
+                    <span class="video-title">Meteor Crater</span>
+                </a>
+                <a href="https://www.youtube.com/watch?v=l-cTzVGRyWU" target="_blank" class="video-item">
+                    <img src="https://img.youtube.com/vi/l-cTzVGRyWU/hqdefault.jpg" alt="" class="video-thumbnail">
+                    <span class="video-title">I Do Mean Anything</span>
+                </a>
+                <a href="https://www.youtube.com/watch?v=jmerzqq9iPg" target="_blank" class="video-item">
+                    <img src="https://img.youtube.com/vi/jmerzqq9iPg/hqdefault.jpg" alt="" class="video-thumbnail">
+                    <span class="video-title">Ground Instruction Training</span>
+                </a>
+                <a href="https://www.youtube.com/watch?v=kwOP3SNh1Uk" target="_blank" class="video-item">
+                    <img src="https://img.youtube.com/vi/kwOP3SNh1Uk/hqdefault.jpg" alt="" class="video-thumbnail">
+                    <span class="video-title">The Steam</span>
+                </a>
+                <a href="https://www.youtube.com/watch?v=p0PBIexhK3g" target="_blank" class="video-item">
+                    <img src="https://img.youtube.com/vi/p0PBIexhK3g/hqdefault.jpg" alt="" class="video-thumbnail">
+                    <span class="video-title">Hundred Acre Woods</span>
+                </a>
+                <a href="https://www.youtube.com/watch?v=o-XSY0tywLI" target="_blank" class="video-item">
+                    <img src="https://img.youtube.com/vi/o-XSY0tywLI/hqdefault.jpg" alt="" class="video-thumbnail">
+                    <span class="video-title">To Say The Least</span>
+                </a>
+                <a href="https://www.youtube.com/watch?v=0q6jMtfN5_M" target="_blank" class="video-item">
+                    <img src="https://img.youtube.com/vi/0q6jMtfN5_M/hqdefault.jpg" alt="" class="video-thumbnail">
+                    <span class="video-title">BEWARE</span>
+                </a>
+                <a href="https://www.youtube.com/watch?v=dHNM1PJqQMw" target="_blank" class="video-item">
+                    <img src="https://img.youtube.com/vi/dHNM1PJqQMw/hqdefault.jpg" alt="" class="video-thumbnail">
+                    <span class="video-title">DEER</span>
+                </a>
+
+                <a href="https://www.youtube.com/watch?v=oKnpfOQ0vcM" target="_blank" class="video-item">
+                    <img src="https://img.youtube.com/vi/oKnpfOQ0vcM/hqdefault.jpg" alt="" class="video-thumbnail">
+                    <span class="video-title">This Is Exactly The Look</span>
+                </a>
+
+                <a href="https://www.youtube.com/watch?v=ebG4jFZPo5E" target="_blank" class="video-item">
+                    <img src="https://img.youtube.com/vi/ebG4jFZPo5E/hqdefault.jpg" alt="" class="video-thumbnail">
+                    <span class="video-title">I Love Beijing Tiananmen</span>
+                </a>
+                <a href="https://www.youtube.com/watch?v=8Yb_4NE0Qds" target="_blank" class="video-item">
+                    <img src="https://img.youtube.com/vi/8Yb_4NE0Qds/hqdefault.jpg" alt="" class="video-thumbnail">
+                    <span class="video-title">Aero Gros Gum</span>
+                </a>
+
+                <a href="https://www.youtube.com/watch?v=Y3RWhvxPhnk" target="_blank" class="video-item">
+                    <img src="https://img.youtube.com/vi/Y3RWhvxPhnk/hqdefault.jpg" alt="" class="video-thumbnail">
+                    <span class="video-title">Cactus Gum</span>
+                </a>
+
+                <a href="https://www.youtube.com/watch?v=r7qW8F3lN-g" target="_blank" class="video-item">
+                    <img src="https://img.youtube.com/vi/r7qW8F3lN-g/hqdefault.jpg" alt="" class="video-thumbnail">
+                    <span class="video-title">Hard Time</span>
+                </a>
+
+                <a href="https://www.youtube.com/watch?v=7aaU0UIMnk8" target="_blank" class="video-item">
+                    <img src="https://img.youtube.com/vi/7aaU0UIMnk8/hqdefault.jpg" alt="" class="video-thumbnail">
+                    <span class="video-title">Here's A Body</span>
+                </a>
+
+                <a href="https://www.youtube.com/watch?v=hvS87uLdF8k" target="_blank" class="video-item">
+                    <img src="https://img.youtube.com/vi/hvS87uLdF8k/hqdefault.jpg" alt="" class="video-thumbnail">
+                    <span class="video-title">Bottle Song</span>
+                </a>
+                <a href="https://www.youtube.com/watch?v=ZhggRT4nZbs" target="_blank" class="video-item">
+                    <img src="https://img.youtube.com/vi/ZhggRT4nZbs/hqdefault.jpg" alt="" class="video-thumbnail">
+                    <span cl"https://www.youtube.com/watch?v=_C9O5YWHaxc" target="_blank" class="video-item">
+                    <img src="https://img.youtube.com/vi/_C9O5YWHaxc/hqdefault.jpg" alt="" class="video-thumbnail">
+                    <span class="video-title">Waterless Death Cough</span>
+                </a>
+
+                <a href="https://www.youtube.com/watch?v=x-M4rUpq1zY" target="_blank" class="video-item">
+                    <img src="https://img.youtube.com/vi/x-M4rUpq1zY/hqdefault.jpg" alt="" class="video-thumbnail">
+                    <span class="video-title">commonfolksong</span>
+                </a>
+
+                <a href="https://www.youtube.com/watch?v=Mw5PlWwz-sw" target="_blank" class="video-item">
+                    <img src="https://img.youtube.com/vi/Mw5PlWwz-sw/hqdefault.jpg" alt="" class="video-thumbnail">
+                    <span class="video-title">Pierre the Father</span>
+                </a>
             </div>
         </section>
-        
-        <div id="annotation-tooltip" style="display: none;"></div>
-    </main>
-
+        </main>
+    
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const LYRICS_PROXY_URL = 'https://your-worker-subdomain.workers.dev'; // 🚨 IMPORTANT: Replace with your actual Worker URL
-            const songLinks = document.querySelectorAll('.song-link');
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const contentPanels = document.querySelectorAll('.content-panel');
+            const songLinks = document.querySelectorAll('.song-list a');
+            
+            // --- PROXY URL ---
+            const LYRICS_PROXY_URL = 'https://genius-proxy-xgum.6w2hbj9tdm.workers.dev/'; // Ensure this matches your deployed Worker URL
+            // ----------------------------------------
 
-            // --- 1. NEW: Annotation Logic Function ---
-            function initializeAnnotationListeners() {
-                const annotatedSpans = document.querySelectorAll('.annotated-lyric');
-                const tooltip = document.getElementById('annotation-tooltip');
-                
-                // 🚨 NOTE: This is a placeholder. A complete solution would fetch this content.
-                const ANNOTATION_PLACEHOLDER = 'This is a test annotation. The full annotation text would be fetched separately from Genius using the data-id!';
+            // --- Tab Switching Logic ---
+            tabButtons.forEach(button => {
+                if (button.hasAttribute('data-tab')) {
+                    button.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        
+                        const tabId = button.getAttribute('data-tab');
 
-                annotatedSpans.forEach(span => {
-                    // --- MOUSE OVER ---
-                    span.addEventListener('mouseover', (e) => {
-                        tooltip.innerHTML = `<p>${ANNOTATION_PLACEHOLDER}</p>`;
-                        tooltip.style.display = 'block';
-                        span.classList.add('highlighted');
+                        if (tabId === 'links' || tabId === 'lyrics') {
+                            tabButtons.forEach(btn => btn.classList.remove('active'));
+                            contentPanels.forEach(panel => panel.classList.remove('active'));
+
+                            button.classList.add('active');
+                            document.getElementById(tabId).classList.add('active');
+                            
+                            // Close all open lyric boxes when switching away from the lyrics tab
+                            if (tabId !== 'lyrics') {
+                                document.querySelectorAll('.lyric-display-container').forEach(box => {
+                                    box.style.display = 'none';
+                                    box.innerHTML = '';
+                                });
+                            }
+                        }
                     });
-
-                    // --- MOUSE OUT ---
-                    span.addEventListener('mouseout', () => {
-                        tooltip.style.display = 'none';
-                        span.classList.remove('highlighted');
-                    });
-                    
-                    // --- MOUSE MOVE (for cursor tracking) ---
-                    span.addEventListener('mousemove', (e) => {
-                        // Position near the cursor, with an offset (20px)
-                        tooltip.style.left = `${e.clientX + 20}px`;
-                        tooltip.style.top = `${e.clientY + 20}px`;
-                    });
-                });
-            }
-
-
-            // --- 2. UPDATED: Fetch Lyrics Function ---
+                }
+            });
+            
+            // --- Secure Proxy API Implementation ---
             async function fetchLyrics(songTitle, targetElement) {
+                
                 targetElement.innerHTML = `
-                    <h3 class="category-title">${songTitle} - Loading...</h3>
-                    <div class="lyrics-html-wrapper">
-                        <p class="loading-message">Fetching lyrics from Genius...</p>
-                    </div>
+                    <h3 class="category-title">Searching Genius for: ${songTitle}</h3>
+                    <p>Loading lyrics from Cloudflare Worker...</p>
                 `;
                 targetElement.style.display = 'block';
 
@@ -112,37 +378,42 @@
 
                 try {
                     const response = await fetch(url);
+
+                    if (!response.ok) {
+                        throw new Error(`Server responded with status: ${response.status} (${response.statusText})`);
+                    }
+
                     const data = await response.json(); 
-                    const fetchedHTML = data.lyrics; // Now contains structured HTML
+                    const fetchedLyrics = data.lyrics;
                     const geniusUrl = data.url;
 
-                    if (response.ok && fetchedHTML) {
+                    if (fetchedLyrics) {
                         targetElement.innerHTML = `
                             <h3 class="category-title">${songTitle} - Lyrics</h3>
-                            <div class="lyrics-html-wrapper">
-                                ${fetchedHTML} 
-                            </div>
+                            <pre>${fetchedLyrics}</pre>
                             <p class="link-highlight" style="margin-top: 20px;"><a href="${geniusUrl || '#'}" target="_blank">View Full Page on Genius</a></p>
                         `;
-                        // 🚨 CRITICAL: Call the new initializer function
-                        initializeAnnotationListeners(); 
-
                     } else {
                         targetElement.innerHTML = `
-                            <h3 class="category-title">${songTitle} - Error</h3>
-                            <p class="error-message">Could not find lyrics or an error occurred. ${data.error || ''}</p>
+                            <h3 class="category-title">Lookup Failed</h3>
+                            <p>Lyrics could not be fully retrieved for **${songTitle}**.</p>
+                            <p>Genius URL Found: <a href="${geniusUrl}" target="_blank" class="link-highlight">Click to view</a></p>
+                            <pre style="margin-top: 15px;">${data.lyrics}</pre>
                         `;
                     }
 
                 } catch (error) {
+                    console.error('Proxy Error:', error);
                     targetElement.innerHTML = `
-                        <h3 class="category-title">${songTitle} - Network Error</h3>
-                        <p class="error-message">Failed to connect to the lyric server. Check console for detailed network issues.</p>
+                        <h3 class="category-title">Connection Error 🛑</h3>
+                        <p>Could not connect to the lyrics proxy, or an internal error occurred.</p>
+                        <p>Details: <code>${error.message || 'Unknown Error'}</code></p>
+                        <p>Check the Console (F12) for detailed network issues.</p>
                     `;
                 }
             }
 
-            // --- 3. Event Listener Logic (Unchanged but uses the updated fetch) ---
+            // --- Event Listener Logic (For lyrics beneath the song) ---
             songLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();

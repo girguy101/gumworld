@@ -38,68 +38,250 @@ body {
     position: fixed; 
     right: 20;
     bottom: 50;
-    z-index: 1000; /* Ensure it stays above other content */
+    z-index: 1000; 
+}
+/* Header Styling - Centered Title with a dark background for readability */
+.site-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.site-header h1 {
+    color: magenta;
+    background-color: rgba(0, 0, 0, 0.7); 
+    padding: 10px 20px;
+    display: inline-block;
 }
 
+/* Main Layout: Removed old grid/flex properties */
 .content-wrapper {
-    max-width: var(--max-width);
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
-    background-color: rgba(0, 0, 0, 0.7); /* Slightly transparent dark background for readability */
-    border: 1px solid magenta;
-    border-radius: 5px;
+    gap: 40px;
 }
 
+/* **FIX 1: The main 2/3 and 1/3 grid container** */
 .site-content-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr; /* Two-thirds for music, one-third for links */
-    gap: 30px;
+    /* 2fr for the left (Image/Lyrics), 1fr for the right (Releases) */
+    grid-template-columns: 2fr 1fr;
+    gap: 30px; 
+    margin-bottom: 40px; 
+    /* NEW: This makes the grid row height determined by the tallest content (Releases) */
+    align-items: stretch; 
 }
 
-.site-header h1 {
-    font-family: 'Courier New', Courier, monospace;
-    color: var(--color-highlight);
+.left-panel-2-3 {
+    /* Container for the tabs and switchable content (2/3 width) */
+    grid-column: 1 / 2;
+    /* NEW: Forces the panel to fill the height provided by the stretching grid row */
+    min-height: 100%; 
+}
+
+/* **Releases Section Styling (1/3 width, full height, NO SCROLL)** */
+.releases-section {
+    grid-column: 2 / 3; /* Ensures it sits in the second column */
+    /* This section remains the height determinant */
+    padding: 20px; 
+    background-color: rgba(0, 0, 0, 0.85); 
+    border: 2px solid magenta; 
+    border-radius: 8px;
+    min-width: 250px; 
+}
+
+/* Design Element: Content blocks with border and semi-transparent background */
+.welcome-section, .release-category {
+    padding: 0; 
+    background-color: transparent; 
+    border: none;
+    border-radius: 0;
     margin-bottom: 20px;
-    text-shadow: 0 0 5px var(--color-highlight);
 }
 
-/* --- SONG LIST STYLES --- */
-.song-list-container {
-    padding: 10px;
-    border: 1px solid magenta;
-}
-
-#song-list {
-    list-style: none;
-}
-
-#song-list li {
-    margin-bottom: 15px;
-}
-
-.song-link {
+/* Typography and Color */
+.section-title {
     color: magenta;
-    text-decoration: none;
-    font-weight: bold;
-    display: inline-block;
-    padding: 5px 0;
-}
-
-.song-link:hover {
-    color: var(--color-highlight);
-    text-decoration: underline;
+    border-bottom: 2px solid chartreuse;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
 }
 
 .category-title {
-    color: var(--color-highlight);
-    border-bottom: 1px solid magenta;
-    padding-bottom: 5px;
+    color: magenta;
+    margin-top: 20px;
     margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+/* Link Styling with Hover Effect */
+a {
+    color: chartreuse; 
+    text-decoration: none;
+    display: inline-block;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+a:hover {
+    color: magenta; 
+    text-decoration: underline;
+}
+
+.link-highlight {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/* List Styling */
+.release-list {
+    list-style-type: circle;
+    padding-left: 20px;
+}
+
+.release-list li {
+    margin-bottom: 5px;
+}
+
+/* Image/Link Styling: Set to 100% of the 2/3 width */
+.image-links {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin: 10px 0;
+    width: 100%; 
+    flex-wrap: wrap; 
+}
+.image-links a {
+    width: 48%; 
+    display: block; 
+    height: 400px; 
+    overflow: hidden; 
+    margin-bottom: 5px; 
+    border: 3px solid chartreuse; 
+    box-sizing: border-box;
+}
+.profile-img {
+    width: 100%; 
+    height: 100%; 
+    object-fit: contain; 
+    box-sizing: border-box;
+    transition: transform 0.3s ease;
+}
+
+.profile-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px chartreuse;
+}
+
+/* Retro/Vaporwave Glow Effect */
+h1, h2, h3 {
+    text-shadow: 0 0 5px var(--color-secondary), 0 0 10px var(--color-secondary);
+}
+
+/* --- TABS STRUCTURE STYLES --- */
+.tabs-container {
+    margin-bottom: 20px;
+}
+.tab-buttons {
+    display: flex;
+    justify-content: flex-start;
+    border-bottom: 2px solid magenta;
+    margin-bottom: 0;
+}
+.tab-button {
+    padding: 10px 15px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: chartreuse;
+    text-decoration: none;
+    border: 1px solid transparent;
+    border-bottom: none;
+    margin-right: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.tab-button:hover {
+    background-color: rgba(50, 0, 50, 0.9);
+}
+.tab-button.active {
+    background-color: magenta;
+    color: black;
+    border-color: chartreuse;
+    border-radius: 5px 5px 0 0;
+    font-weight: bold;
+    pointer-events: none;
+}
+
+/* --- CONTENT PANEL STYLES --- */
+.content-panel {
+    display: none;
+    padding: 0;
+}
+.content-panel.active {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.85); 
+    border: 2px solid magenta;
+    border-radius: 8px;
+    padding: 20px; 
+    /* Ensures the inner content can stretch the full column height */
+    height:100%; 
+    box-sizing: border-box;
+}
+
+/* **FIX 2: LYRICS TAB PANEL (The outer container) - REMOVE SCROLL/HEIGHT** */
+#lyrics.content-panel {
+    max-height: 1950px; 
+    overflow-y: auto; 
+    padding-right: 20px; 
+}
+
+
+/* **YOUTUBE SECTION STYLES (Containerized)** */
+.youtube-section {
+    /* Sits outside the grid, takes full width, now has a container style */
+    padding: 20px; 
+    background-color: rgba(0, 0, 0, 0.85); /* Added background */
+    border: 2px solid magenta; /* Added border */
+    border-radius: 8px;
+    margin-top: 20px; 
+}
+
+/* Flexbox for the video layout */
+.video-grid {
+    display: flex;
+    flex-wrap: wrap; 
+    gap: 20px;
+    justify-content: center; 
+    padding-top: 10px;
+}
+
+.video-item {
+    display: block;
+    overflow: hidden; 
+    border: 2px solid chartreuse;
+    line-height: 0; 
+    width: 23%; 
+    min-width: 150px; 
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.video-thumbnail {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.video-title {
+    display: block;
+    color: magenta;
+    padding: 5px 5px 10px 5px; 
+    line-height: 1.2; 
+    font-size: 0.9em;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.5); 
 }
 
 /* --- LYRIC DISPLAY CONTAINER STYLES (Beneath each song) --- */
 .lyric-display-container {
-    max-height: 800px; 
+    max-height: 800px; /* This keeps the inner lyric box scrollable */
     overflow-y: auto; 
     border: 1px solid magenta; 
     padding: 15px;
@@ -109,71 +291,46 @@ body {
     background-color: rgba(0, 0, 0, 0.9);
 }
 
-/* The lyrics are now in a wrapper DIV, not <pre> */
-.lyrics-html-wrapper {
+.lyric-display-container pre {
+    white-space: pre-wrap; 
     font-family: 'Courier New', Courier, monospace;
     font-size: 1em;
     color: var(--color-text, magenta);
-    /* This allows the lyrics to wrap correctly */
-    white-space: pre-wrap;
+    background-color: transparent; 
     padding: 0;
     margin: 0;
 }
 
-/* ---------------------------------------------------- */
-/* --- NEW: ANNOTATION STYLES --- */
-/* ---------------------------------------------------- */
-
-/* 1. Style for the annotated text in the lyrics panel */
-.annotated-lyric {
-    /* Style to indicate the text is annotated */
-    cursor: help;
-    color: var(--color-highlight); /* chartreuse */
-    border-bottom: 1px dashed var(--color-highlight);
-    text-decoration: none;
-    transition: color 0.1s;
-    /* Important: Treat it as part of the text flow */
-    display: inline; 
-}
-
-.annotated-lyric.highlighted {
-    color: magenta; /* change color on hover */
-    font-weight: bold;
-}
-
-/* 2. Style for the dynamic pop-up box attached to the cursor */
-#annotation-tooltip {
-    /* **Crucial for attachment to the cursor** */
-    position: fixed; 
-    
-    /* Appearance as requested */
-    background-color: black;
-    color: magenta;
-    border: 2px solid chartreuse; /* Green border */
-    border-radius: 4px;
-    padding: 10px;
-    
-    /* Layout/Z-index */
-    max-width: 300px;
-    pointer-events: none; /* Allows clicks/hovers on elements *under* the tooltip */
-    z-index: 2000; /* Ensure it's on top of everything */
-    
-    /* Basic text styling */
-    line-height: 1.4;
-    font-family: var(--font-stack);
-    box-shadow: 0 0 10px rgba(75, 255, 0, 0.5); /* Optional glow */
-}
-
-/* Clear default padding/margin for content inside the tooltip */
-#annotation-tooltip p {
-    margin: 0;
-    padding: 0;
-}
 
 /* Responsive Design: Stacking on smaller screens */
 @media (max-width: 768px) {
+    
     /* Stack the new 2/3 and 1/3 columns vertically on mobile */
     .site-content-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Single column */
+        gap: 0;
+    }
+    
+    /* Ensure the releases section is visible and flows below the tabs on mobile (full height) */
+    .releases-section {
+        grid-column: 1 / -1; 
+        max-height: none;
+        overflow-y: visible;
+        padding: 20px; 
+        margin-top: 20px; 
+    }
+    
+    .left-panel-2-3 {
+        grid-column: 1 / -1;
+    }
+
+    .image-links a {
+        width: 48%; 
+        height: 300px; 
+    }
+
+    .video-item {
+        width: 100%; 
+        min-width: unset;
     }
 }
