@@ -37,7 +37,7 @@ body {
     /* 1. Remove it from the normal document flow */
     position: fixed; 
     right: 20px;
-    bottom: 50px;
+    bottom: 200px;
     z-index: 1000; 
 }
 /* Header Styling - Centered Title with a dark background for readability */
@@ -70,7 +70,6 @@ body {
     align-items: stretch; 
 }
 
-
 .left-panel-2-3 {
     /* Container for the tabs and switchable content (2/3 width) */
     grid-column: 1 / 2;
@@ -88,7 +87,8 @@ body {
     border: 2px solid magenta; 
     border-radius: 8px;
     min-width: 250px; 
-    min-height: 100%;
+    min-height: 2200px;
+    max-height: 2227px;
 }
 /* Design Element: Content blocks with border and semi-transparent background */
 .welcome-section, .release-category {
