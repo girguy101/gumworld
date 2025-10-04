@@ -36,8 +36,8 @@ body {
 #winamp-container {
     /* 1. Remove it from the normal document flow */
     position: fixed; 
-    right: 20;
-    bottom: 50;
+    right: 20px;
+    bottom: 50px;
     z-index: 1000; 
 }
 /* Header Styling - Centered Title with a dark background for readability */
