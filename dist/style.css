@@ -74,8 +74,8 @@ body {
     /* Container for the tabs and switchable content (2/3 width) */
     grid-column: 1 / 2;
     /* NEW: Forces the panel to fill the height provided by the stretching grid row */
-    min-height: 2200px; 
-    max-height: 2227px;
+    min-height: 1040px; 
+    max-height: 1045px;
 }
 
 /* **Releases Section Styling (1/3 width, full height, NO SCROLL)** */
@@ -87,8 +87,8 @@ body {
     border: 2px solid magenta; 
     border-radius: 8px;
     min-width: 250px; 
-    min-height: 2200px;
-    max-height: 2227px;
+    min-height: 1040px;
+    max-height: 1045px;
 }
 /* Design Element: Content blocks with border and semi-transparent background */
 .welcome-section, .release-category {
@@ -224,7 +224,7 @@ h1, h2, h3 {
     border-radius: 8px;
     padding: 20px; 
     /* Ensures the inner content can stretch the full column height */
-    height:100%; 
+    height:1045 pix; 
     box-sizing: border-box;
 }
 
