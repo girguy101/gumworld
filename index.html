@@ -300,203 +300,201 @@
             });
             
             document.addEventListener('DOMContentLoaded', () => {
-                const tabButtons = document.querySelectorAll('.tab-button');
-                const contentPanels = document.querySelectorAll('.content-panel');
-                const songLinks = document.querySelectorAll('.song-list a');
-                // The links we need to hover over
-                const releaseLinks = document.querySelectorAll('.releases-section .release-list a');
-    
-                // 🛑 IMPORTANT: VERIFY THIS URL MATCHES YOUR DEPLOYED CLOUDFLARE WORKER!
-                const LYRICS_PROXY_URL = 'https://genius-proxy-xgum.6w2hbj9tdm.workers.dev/'; 
-                
-                // --- Album Art State and Elements ---
-                const albumArtCache = new Map();
-                const hoverBox = document.getElementById('album-art-hover'); 
-                const hoverImage = document.getElementById('hover-image');
-                const cursorPadding = 20;
-    
-                // --- Tab Switching Logic ---
-                tabButtons.forEach(button => {
-                    if (button.hasAttribute('data-tab')) {
-                        button.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            const tabId = button.getAttribute('data-tab');
-    
-                            tabButtons.forEach(btn => btn.classList.remove('active'));
-                            contentPanels.forEach(panel => panel.classList.remove('active'));
-    
-                            button.classList.add('active');
-                            // Handle the target panel ID
-                            const targetPanel = document.getElementById(tabId) || document.getElementById(button.getAttribute('data-tab').replace('-section', ''));
-                            if (targetPanel) {
-                                targetPanel.classList.add('active');
-                            }
-                            
-                            // Clean up lyrics when switching tabs
-                            if (tabId !== 'lyrics') {
-                                document.querySelectorAll('.lyric-display-container').forEach(box => {
-                                    box.style.display = 'none';
-                                    box.innerHTML = '';
-                                });
-                            }
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const contentPanels = document.querySelectorAll('.content-panel');
+        const songLinks = document.querySelectorAll('.song-list a');
+        const releaseLinks = document.querySelectorAll('.releases-section .release-list a');
+
+        const LYRICS_PROXY_URL = 'https://genius-proxy-xgum.6w2hbj9tdm.workers.dev/'; 
+        
+        const albumArtCache = new Map();
+        const hoverBox = document.getElementById('album-art-hover'); 
+        const hoverImage = document.getElementById('hover-image');
+        const cursorPadding = 20;
+
+        // --- Tab Switching Logic (Omitted for brevity, assumed correct) ---
+        tabButtons.forEach(button => {
+            if (button.hasAttribute('data-tab')) {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const tabId = button.getAttribute('data-tab');
+
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    contentPanels.forEach(panel => panel.classList.remove('active'));
+
+                    button.classList.add('active');
+                    const targetPanel = document.getElementById(tabId) || document.getElementById(button.getAttribute('data-tab').replace('-section', ''));
+                    if (targetPanel) {
+                        targetPanel.classList.add('active');
+                    }
+                    
+                    if (tabId !== 'lyrics') {
+                        document.querySelectorAll('.lyric-display-container').forEach(box => {
+                            box.style.display = 'none';
+                            box.innerHTML = '';
                         });
                     }
                 });
-                
-                // --- 1. Album Art Fetcher (Calls Worker with mode=image-genius) ---
-                async function fetchAlbumArt(releaseTitle) {
-                    if (albumArtCache.has(releaseTitle)) {
-                        return albumArtCache.get(releaseTitle);
-                    }
-                    
-                    // Construct the query: artist + release title for best Genius search result
-                    const query = `xgum ${releaseTitle}`; 
-                    // Use the new mode for Genius API album art fetching
-                    const url = `${LYRICS_PROXY_URL}?mode=image-genius&q=${encodeURIComponent(query)}`;
-    
-                    try {
-                        const response = await fetch(url);
-                        if (!response.ok) {
-                            console.error(`Proxy failed to fetch image for: ${releaseTitle}. Status: ${response.status}`);
-                            return null;
-                        }
-                        const data = await response.json(); 
-                        const imageUrl = data.image_url;
-    
-                        if (imageUrl) {
-                            albumArtCache.set(releaseTitle, imageUrl);
-                            return imageUrl;
-                        }
-    
-                    } catch (error) {
-                        console.error('Genius Image Fetch Error:', error);
-                    }
+            }
+        });
+        
+        // --- 1. Album Art Fetcher (Calls Worker with mode=image-genius) ---
+        async function fetchAlbumArt(releaseTitle) {
+            if (albumArtCache.has(releaseTitle)) {
+                return albumArtCache.get(releaseTitle);
+            }
+            
+            // Construct the query: artist + CLEANED title
+            const query = `xgum ${releaseTitle}`; 
+            const url = `${LYRICS_PROXY_URL}?mode=image-genius&q=${encodeURIComponent(query)}`;
+
+            try {
+                const response = await fetch(url);
+                if (!response.ok) {
+                    // Log a clear error when the worker fails
+                    console.error(`Proxy failed to fetch image for: ${releaseTitle}. Status: ${response.status}. Check worker logs for details.`);
                     return null;
                 }
-    
-                // --- 2. Hover Box Position Updater ---
-                function updateHoverBoxPosition(mouseX, mouseY) {
-                    let x = mouseX + cursorPadding;
-                    let y = mouseY + cursorPadding;
-    
-                    // Simple bounds checking to keep box on screen
-                    if (mouseX + hoverBox.offsetWidth + cursorPadding > window.innerWidth) {
-                        x = mouseX - hoverBox.offsetWidth - cursorPadding;
-                    }
-                    
-                    if (mouseY + hoverBox.offsetHeight + cursorPadding > window.innerHeight) {
-                        y = mouseY - hoverBox.offsetHeight - cursorPadding;
-                    }
-    
-                    hoverBox.style.left = `${x}px`;
-                    hoverBox.style.top = `${y}px`;
+                const data = await response.json(); 
+                const imageUrl = data.image_url;
+
+                if (imageUrl) {
+                    albumArtCache.set(releaseTitle, imageUrl);
+                    return imageUrl;
                 }
-    
-                // --- 3. Event Listeners for Release Links ---
-                releaseLinks.forEach(link => {
-                    // Get the text content of the link (e.g., "Ruth (2019)")
-                    const releaseTitle = link.textContent.trim(); 
-    
-                    link.addEventListener('mouseenter', async (e) => {
-                        const imageUrl = await fetchAlbumArt(releaseTitle);
-    
-                        if (imageUrl && hoverBox && hoverImage) { 
-                            hoverImage.src = imageUrl;
-                            hoverBox.style.display = 'block';
-                            updateHoverBoxPosition(e.clientX, e.clientY);
-                        }
-                    });
-    
-                    link.addEventListener('mousemove', (e) => {
-                        if (hoverBox.style.display === 'block') {
-                            updateHoverBoxPosition(e.clientX, e.clientY);
-                        }
-                    });
-    
-                    link.addEventListener('mouseleave', () => {
-                        if (hoverBox) {
-                            hoverBox.style.display = 'none';
-                        }
-                    });
-                });
-    
-                // --- 4. Secure Proxy API Implementation for Lyrics (mode=lyrics) ---
-                async function fetchLyrics(songTitle, targetElement) {
-                    
-                    targetElement.innerHTML = `
-                        <h3 class="category-title">Searching Genius for: ${songTitle}</h3>
-                        <p>Loading lyrics from Cloudflare Worker...</p>
-                    `;
-                    targetElement.style.display = 'block';
-    
-                    // Call the Worker with mode=lyrics
-                    const url = `${LYRICS_PROXY_URL}?mode=lyrics&q=xgum ${encodeURIComponent(songTitle)}`;
-    
-                    try {
-                        const response = await fetch(url);
-    
-                        if (!response.ok) {
-                            throw new Error(`Server responded with status: ${response.status} (${response.statusText})`);
-                        }
-    
-                        const data = await response.json(); 
-                        const fetchedLyrics = data.lyrics;
-                        const geniusUrl = data.url;
-    
-                        if (fetchedLyrics) {
-                            targetElement.innerHTML = `
-                                <h3 class="category-title">${songTitle} - Lyrics</h3>
-                                <pre>${fetchedLyrics}</pre>
-                                <p class="link-highlight" style="margin-top: 20px;"><a href="${geniusUrl || '#'}" target="_blank">View Full Page on Genius</a></p>
-                            `;
-                        } else {
-                            targetElement.innerHTML = `
-                                <h3 class="category-title">Lookup Failed</h3>
-                                <p>Lyrics could not be fully retrieved for **${songTitle}**.</p>
-                                <p>Genius URL Found: <a href="${geniusUrl}" target="_blank" class="link-highlight">Click to view</a></p>
-                                <pre style="margin-top: 15px;">${data.lyrics}</pre>
-                            `;
-                        }
-    
-                    } catch (error) {
-                        console.error('Proxy Error:', error);
-                        targetElement.innerHTML = `
-                            <h3 class="category-title">Connection Error 🛑</h3>
-                            <p>Could not connect to the lyrics proxy, or an internal error occurred.</p>
-                            <p>Details: <code>${error.message || 'Unknown Error'}</code></p>
-                            <p>Check the Console (F12) for detailed network issues.</p>
-                        `;
-                    }
+
+            } catch (error) {
+                console.error('Genius Image Fetch Error:', error);
+            }
+            return null;
+        }
+
+        // --- 2. Hover Box Position Updater (Unchanged) ---
+        function updateHoverBoxPosition(mouseX, mouseY) {
+            let x = mouseX + cursorPadding;
+            let y = mouseY + cursorPadding;
+
+            if (mouseX + hoverBox.offsetWidth + cursorPadding > window.innerWidth) {
+                x = mouseX - hoverBox.offsetWidth - cursorPadding;
+            }
+            
+            if (mouseY + hoverBox.offsetHeight + cursorPadding > window.innerHeight) {
+                y = mouseY - hoverBox.offsetHeight - cursorPadding;
+            }
+
+            hoverBox.style.left = `${x}px`;
+            hoverBox.style.top = `${y}px`;
+        }
+
+        // --- 3. Event Listeners for Release Links (THE FIX IS HERE) ---
+        releaseLinks.forEach(link => {
+            // Get the text content of the link (e.g., "Ruth (2019)")
+            let releaseTitle = link.textContent.trim(); 
+            
+            // *** FIX: Remove any parenthesized years/text from the title ***
+            // This regex finds content in parentheses followed by optional whitespace at the end of the string.
+            releaseTitle = releaseTitle.replace(/\s*\(\s*\d{4}\s*\)\s*$/, '').trim(); 
+            // Example: "Ruth (2019)" becomes "Ruth"
+            
+            link.addEventListener('mouseenter', async (e) => {
+                // Pass the CLEANED title to the fetcher
+                const imageUrl = await fetchAlbumArt(releaseTitle);
+
+                if (imageUrl && hoverBox && hoverImage) { 
+                    hoverImage.src = imageUrl;
+                    hoverBox.style.display = 'block';
+                    updateHoverBoxPosition(e.clientX, e.clientY);
                 }
-    
-                // --- Event Listener Logic for lyrics (Toggles display) ---
-                songLinks.forEach(link => {
-                    link.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        
-                        const listItem = link.closest('li');
-                        const targetElement = listItem.querySelector('.lyric-display-container');
-                        const songTitle = listItem.getAttribute('data-song');
-    
-                        // Close all other open lyric boxes
-                        document.querySelectorAll('.lyric-display-container').forEach(box => {
-                            if (box !== targetElement && box.style.display !== 'none') {
-                                box.style.display = 'none';
-                                box.innerHTML = '';
-                            }
-                        });
-                        
-                        // If the box is already open, close it (toggle behavior)
-                        if (targetElement.style.display !== 'none' && targetElement.innerHTML !== '') {
-                            targetElement.style.display = 'none';
-                            targetElement.innerHTML = '';
-                            return; 
-                        }
-    
-                        fetchLyrics(songTitle, targetElement);
-                    });
-                });
             });
-        </script>
+
+            link.addEventListener('mousemove', (e) => {
+                if (hoverBox.style.display === 'block') {
+                    updateHoverBoxPosition(e.clientX, e.clientY);
+                }
+            });
+
+            link.addEventListener('mouseleave', () => {
+                if (hoverBox) {
+                    hoverBox.style.display = 'none';
+                }
+            });
+        });
+
+        // --- 4. Secure Proxy API Implementation for Lyrics (mode=lyrics) ---
+        async function fetchLyrics(songTitle, targetElement) {
+            
+            targetElement.innerHTML = `
+                <h3 class="category-title">Searching Genius for: ${songTitle}</h3>
+                <p>Loading lyrics from Cloudflare Worker...</p>
+            `;
+            targetElement.style.display = 'block';
+
+            // Call the Worker with mode=lyrics
+            const url = `${LYRICS_PROXY_URL}?mode=lyrics&q=xgum ${encodeURIComponent(songTitle)}`;
+
+            try {
+                const response = await fetch(url);
+
+                if (!response.ok) {
+                    throw new Error(`Server responded with status: ${response.status} (${response.statusText})`);
+                }
+
+                const data = await response.json(); 
+                const fetchedLyrics = data.lyrics;
+                const geniusUrl = data.url;
+
+                if (fetchedLyrics) {
+                    targetElement.innerHTML = `
+                        <h3 class="category-title">${songTitle} - Lyrics</h3>
+                        <pre>${fetchedLyrics}</pre>
+                        <p class="link-highlight" style="margin-top: 20px;"><a href="${geniusUrl || '#'}" target="_blank">View Full Page on Genius</a></p>
+                    `;
+                } else {
+                    targetElement.innerHTML = `
+                        <h3 class="category-title">Lookup Failed</h3>
+                        <p>Lyrics could not be fully retrieved for **${songTitle}**.</p>
+                        <p>Genius URL Found: <a href="${geniusUrl}" target="_blank" class="link-highlight">Click to view</a></p>
+                        <pre style="margin-top: 15px;">${data.lyrics}</pre>
+                    `;
+                }
+
+            } catch (error) {
+                console.error('Proxy Error:', error);
+                targetElement.innerHTML = `
+                    <h3 class="category-title">Connection Error 🛑</h3>
+                    <p>Could not connect to the lyrics proxy, or an internal error occurred.</p>
+                    <p>Details: <code>${error.message || 'Unknown Error'}</code></p>
+                    <p>Check the Console (F12) for detailed network issues.</p>
+                `;
+            }
+        }
+
+        // --- Event Listener Logic for lyrics (Toggles display) ---
+        songLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                const listItem = link.closest('li');
+                const targetElement = listItem.querySelector('.lyric-display-container');
+                const songTitle = listItem.getAttribute('data-song');
+
+                document.querySelectorAll('.lyric-display-container').forEach(box => {
+                    if (box !== targetElement && box.style.display !== 'none') {
+                        box.style.display = 'none';
+                        box.innerHTML = '';
+                    }
+                });
+                
+                if (targetElement.style.display !== 'none' && targetElement.innerHTML !== '') {
+                    targetElement.style.display = 'none';
+                    targetElement.innerHTML = '';
+                    return; 
+                }
+
+                fetchLyrics(songTitle, targetElement);
+            });
+        });
+    });
+</script>
           </body>
           </html>
