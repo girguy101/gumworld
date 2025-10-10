@@ -15,7 +15,7 @@
     src: url('nuttype.woff2') format('woff2'),
          url('nuttype.woff') format('woff'),
          /* This is the key line based on your setup: */
-         url('nuttype.tff') format('truetype');
+         url('nuttype.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
     font-display: swap; 
@@ -54,6 +54,7 @@ body {
 }
 /* Header Styling - Centered Title with a dark background for readability */
 .site-header {
+    font-family: 'NutType', sans-serif;
     text-align: center;
     margin-bottom: 30px;
 }
@@ -115,6 +116,7 @@ body {
 
 /* Typography and Color */
 .section-title {
+    font-family: 'NutType', sans-serif;
     color: magenta;
     border-bottom: 2px solid chartreuse;
     padding-bottom: 10px;
@@ -128,7 +130,6 @@ body {
     margin-top: 20px;
     margin-bottom: 10px;
     font-size: 1.2em;
-    text-align:center;
 }
 
 /* Link Styling with Hover Effect */
