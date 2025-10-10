@@ -52,6 +52,7 @@ body {
     margin-bottom: 30px;
 }
 .site-header h1, .site-header h2 {
+    font-family: 'NutType', sans-serif;
     color: magenta;
     background-color: rgba(0, 0, 0, 0.7); 
     padding: 10px 20px;
@@ -283,7 +284,7 @@ h1, h2, h3 {
 }
 
 .video-title {
-    font-family: 'NutType', sans-serif;
+    font-family: 'NutType';
     display: block;
     color: magenta;
     padding: 5px 5px 10px 5px; 
@@ -344,6 +345,9 @@ h1, h2, h3 {
     }
     
     /* Ensure the releases section is visible and flows below the tabs on mobile (full height) */
+    .content-panel.active {
+        max-height:1394px;
+    }
     .releases-section {
         grid-column: 1 / -1; 
         max-height: 1400px;
