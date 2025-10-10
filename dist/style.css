@@ -188,11 +188,6 @@ a:hover {
     box-shadow: 0 0 15px chartreuse;
 }
 
-/* Retro/Vaporwave Glow Effect */
-h1, h2, h3 {
-    text-shadow: 0 0 5px var(--color-highlight), 0 0 10px var(--color-highlight);
-}
-
 /* --- TABS STRUCTURE STYLES --- */
 .tabs-container {
     margin-bottom: 20px;
