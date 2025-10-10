@@ -9,10 +9,16 @@
 }
 @font-face {
     font-family: 'NutType';
-    /* Since style.css and nuttype.tff are in the same folder, use only the filename. */
-    src: url('nuttype.tff') format('truetype'); 
+    /* * Best Practice: Provide multiple formats for max compatibility. 
+     * If you are unable to convert, just use the .tff line, but conversion is recommended.
+     */
+    src: url('nuttype.woff2') format('woff2'),
+         url('nuttype.woff') format('woff'),
+         /* This is the key line based on your setup: */
+         url('nuttype.tff') format('truetype');
     font-weight: normal;
     font-style: normal;
+    font-display: swap; 
 }
 /* Basic Reset & Body Styling */
 body {
@@ -114,7 +120,6 @@ body {
     padding-bottom: 10px;
     margin-bottom: 20px;
     text-transform: uppercase;
-    text-align:center;
 }
 
 .category-title {
