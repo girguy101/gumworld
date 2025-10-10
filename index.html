@@ -416,28 +416,35 @@
 
             // --- 3. Event Listeners for Release Links ---
             releaseLinks.forEach(link => {
-                const bandcampUrl = link.href;
+    // This is the URL from the <a> tag (the Bandcamp URL)
+    const bandcampUrl = link.href; 
 
-                link.addEventListener('mouseenter', async (e) => {
-                    const imageUrl = await fetchAlbumArt(bandcampUrl);
+    // Mouse Enter: Initiate fetch (or use cache) and display
+    link.addEventListener('mouseenter', async (e) => {
+        // Calls the worker using mode=image
+        const imageUrl = await fetchAlbumArt(bandcampUrl); 
 
-                    if (imageUrl) {
-                        hoverImage.src = imageUrl;
-                        hoverBox.style.display = 'block';
-                        updateHoverBoxPosition(e.clientX, e.clientY);
-                    }
-                });
+        if (imageUrl && hoverBox && hoverImage) { 
+            hoverImage.src = imageUrl;
+            hoverBox.style.display = 'block';
+            updateHoverBoxPosition(e.clientX, e.clientY);
+        }
+    });
 
-                link.addEventListener('mousemove', (e) => {
-                    if (hoverBox.style.display === 'block') {
-                        updateHoverBoxPosition(e.clientX, e.clientY);
-                    }
-                });
+    // Mouse Move: Update position to track cursor
+    link.addEventListener('mousemove', (e) => {
+        if (hoverBox.style.display === 'block') {
+            updateHoverBoxPosition(e.clientX, e.clientY);
+        }
+    });
 
-                link.addEventListener('mouseleave', () => {
-                    hoverBox.style.display = 'none';
-                });
-            });
+    // Mouse Leave: Hide box
+    link.addEventListener('mouseleave', () => {
+        if (hoverBox) {
+            hoverBox.style.display = 'none';
+        }
+    });
+});
 
             // --- 4. Secure Proxy API Implementation for Lyrics (mode=lyrics) ---
             async function fetchLyrics(songTitle, targetElement) {
