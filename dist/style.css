@@ -52,7 +52,6 @@ body {
     margin-bottom: 30px;
 }
 .site-header h1, .site-header h2 {
-    font-family: 'NutType', sans-serif;
     color: magenta;
     background-color: rgba(0, 0, 0, 0.7); 
     padding: 10px 20px;
@@ -193,6 +192,7 @@ h1, h2, h3 {
 /* --- TABS STRUCTURE STYLES --- */
 .tabs-container {
     margin-bottom: 20px;
+    height:1394px;
 }
 .tab-buttons {
     display: flex;
@@ -235,7 +235,7 @@ h1, h2, h3 {
     border-radius: 8px;
     padding: 20px; 
     /* Ensures the inner content can stretch the full column height */
-    height:1400px; 
+    height:1394px; 
     box-sizing: border-box;
 }
 
@@ -283,13 +283,15 @@ h1, h2, h3 {
 }
 
 .video-title {
+    font-family: 'NutType', sans-serif;
     display: block;
     color: magenta;
     padding: 5px 5px 10px 5px; 
     line-height: 1.2; 
-    font-size: 0.9em;
+    font-size: 1em;
     font-weight: bold;
     background-color: rgba(0, 0, 0, 0.5); 
+    text-align:center;
 }
 
 /* --- LYRIC DISPLAY CONTAINER STYLES (Beneath each song) --- */
