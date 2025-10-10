@@ -323,15 +323,16 @@ h1, h2, h3 {
 }
 /* --- NEW: Album Art Hover Box Styles --- */
 #album-art-hover {
-    position: fixed; /* Keep it fixed to the viewport/cursor */
+    position: fixed; 
     z-index: 2000; 
     width: 200px; 
     height: 200px; 
     overflow: hidden; 
     border: 3px solid chartreuse; 
     box-shadow: 0 0 10px magenta, 0 0 20px chartreuse; 
-    pointer-events: none; /* Crucial: Allows the mouse to interact with elements underneath it */
+    pointer-events: none; /* Crucial */
     transition: none;
+    display: none; /* Must be hidden by default */
 }
 
 #album-art-hover img {
