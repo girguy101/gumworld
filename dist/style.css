@@ -7,7 +7,13 @@
     --font-stack: 'Arial', sans-serif;
     --max-width: 1200px;
 }
-
+@font-face {
+    font-family: 'NutType';
+    /* Since style.css and nuttype.tff are in the same folder, use only the filename. */
+    src: url('nuttype.tff') format('truetype'); 
+    font-weight: normal;
+    font-style: normal;
+}
 /* Basic Reset & Body Styling */
 body {
     -webkit-box-sizing: border-box;
@@ -45,7 +51,8 @@ body {
     text-align: center;
     margin-bottom: 30px;
 }
-.site-header h1 {
+.site-header h1, .site-header h2 {
+    font-family: 'NutType', sans-serif;
     color: magenta;
     background-color: rgba(0, 0, 0, 0.7); 
     padding: 10px 20px;
@@ -110,10 +117,12 @@ body {
 }
 
 .category-title {
+    font-family: 'NutType', sans-serif;
     color: magenta;
     margin-top: 20px;
     margin-bottom: 10px;
     font-size: 1.2em;
+    text-align:center;
 }
 
 /* Link Styling with Hover Effect */
