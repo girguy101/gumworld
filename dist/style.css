@@ -9,9 +9,6 @@
 }
 @font-face {
     font-family: 'NutType';
-    /* * Best Practice: Provide multiple formats for max compatibility. 
-     * If you are unable to convert, just use the .tff line, but conversion is recommended.
-     */
     src: url('nuttype.woff2') format('woff2'),
          url('nuttype.woff') format('woff'),
          /* This is the key line based on your setup: */
@@ -344,13 +341,29 @@ h1, h2, h3 {
 
 /* Responsive Design: Stacking on smaller screens */
 @media (max-width: 768px) {
-    
-    /* Stack the new 2/3 and 1/3 columns vertically on mobile */
-    .site-content-grid {
-        grid-template-columns: 1fr; /* Single column */
-        gap: 0;
+    @font-face {
+        font-family: 'Gill Sans Custom'; 
+        src: url('path/to/GillSans.otf') format('opentype');
+        font-weight: normal; 
+        font-style: normal;
+        font-display: swap;
+    }
+    .video-title. {
+        font-family: 'Gill Sans', sans-serif;
+    }
+    .site-header {
+        font-family: 'Gill Sans', sans-serif;
+    }
+    .site-header h1, .site-header h2 {
+        font-family: 'Gill Sans', sans-serif;
+    }
+    .section-title {
+        font-family: 'Gill Sans', sans-serif;
     }
     
+    .category-title {
+        font-family: 'Gill Sans', sans-serif;
+    }
     /* Ensure the releases section is visible and flows below the tabs on mobile (full height) */
     .content-panel.active {
         max-height:1394px;
@@ -376,4 +389,5 @@ h1, h2, h3 {
         width: 100%; 
         min-width: unset;
     }
+
 }
