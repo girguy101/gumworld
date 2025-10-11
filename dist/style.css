@@ -50,13 +50,17 @@ body {
     z-index: 1000; 
 }
 /* Header Styling - Centered Title with a dark background for readability */
-.site-header {
+.site-header h1{
     font-family: 'NutType', sans-serif;
     text-align: center;
+    color: #ff8af5;
+    background-color: rgba(0, 0, 0, 0.7); 
+    padding: 10px 20px;
+    display: inline-block;
     margin-bottom: 30px;
     font-size:4rem;
 }
-.site-header h1, .site-header h2 {
+.site-header h2 {
     font-family: 'NutType', sans-serif;
     color: #ff8af5;
     background-color: rgba(0, 0, 0, 0.7); 
