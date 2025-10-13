@@ -17,12 +17,6 @@
     font-style: normal;
     font-display: swap; 
 }
-/* Basic Reset & Body Styling */
-body {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
 
 /* Reset margins and paddings for all common block elements */
 body, h1, h2, h3, p, ul, ol, li, section, header, main, footer, div, a, img {
@@ -31,6 +25,9 @@ body, h1, h2, h3, p, ul, ol, li, section, header, main, footer, div, a, img {
 }
 
 body {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     background-color: black;
     color: #ff8af5;
     font-family: 'Arial', sans-serif;
@@ -51,6 +48,7 @@ body {
 }
 /* Header Styling - Centered Title with a dark background for readability */
 .site-header h1{
+    width:100%;
     font-family: 'NutType', sans-serif;
     text-align: center;
     color: #ff8af5;
@@ -58,7 +56,7 @@ body {
     padding: 10px 20px;
     display: inline-block;
     margin-bottom: 30px;
-    font-size:4rem;
+    font-size:3.4rem;
 }
 .site-header h2 {
     font-family: 'NutType', sans-serif;
@@ -66,12 +64,12 @@ body {
     background-color: rgba(0, 0, 0, 0.7); 
     padding: 10px 20px;
     display: inline-block;
-    font-size:1.5rem;
+    font-size:3rem;
 }
 
 /* Main Layout: Removed old grid/flex properties */
 .content-wrapper {
-    max-width: 1200px;
+    max-width: 90%;
     margin: 0 auto;
     gap: 40px;
 }
@@ -125,7 +123,7 @@ body {
     padding-bottom: 10px;
     margin-bottom: 20px;
     text-transform: uppercase;
-    font-size:1.7rem;
+    font-size:2em;
 }
 
 .category-title {
@@ -133,7 +131,7 @@ body {
     color: #ff8af5;
     margin-top: 20px;
     margin-bottom: 10px;
-    font-size: 1.2em;
+    font-size: 2em;
 }
 
 /* Link Styling with Hover Effect */
